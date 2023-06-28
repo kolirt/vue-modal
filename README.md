@@ -54,7 +54,7 @@ app.mount('#app')
 
 ## Basic usage
 
-First, you need to create modal. Instead of SimpleModal, you can implement your own wrapper with your own styles.
+First, you need to create modal. Instead of `SimpleModal`, you can implement your own wrapper with your own styles.
 
 ```vue
 <script setup lang="ts">
@@ -78,6 +78,14 @@ const props = defineProps({
       </button>
     </template>
   </SimpleModal>
+</template>
+```
+
+Add `ModalTarget` to `App.vue`
+
+```vue
+<template>
+  <ModalTarget/>
 </template>
 ```
 
