@@ -50,6 +50,14 @@ app.use(createModal())
 app.mount('#app')
 ```
 
+Add `ModalTarget` to `App.vue`
+
+```vue
+<template>
+  <ModalTarget/>
+</template>
+```
+
 # Usage
 
 ## Basic usage
@@ -78,14 +86,6 @@ const props = defineProps({
       </button>
     </template>
   </SimpleModal>
-</template>
-```
-
-Add `ModalTarget` to `App.vue`
-
-```vue
-<template>
-  <ModalTarget/>
 </template>
 ```
 
