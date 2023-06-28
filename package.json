@@ -1,6 +1,6 @@
 {
   "name": "@kolirt/vue-modal",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
   "author": "kolirt",
   "license": "MIT",
@@ -44,11 +44,9 @@
   },
   "dependencies": {
     "@kyvg/vue3-notification": "^2.9.1",
-    "add": "^2.0.6",
     "bootstrap": "5.3.0",
     "js-event-bus": "^1.1.1",
-    "vue": "^3.3.2",
-    "yarn": "^1.22.19"
+    "vue": "^3.3.2"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.2.0",
