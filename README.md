@@ -54,7 +54,7 @@ app.mount('#app')
 
 ## Basic usage
 
-First, you need to create modal.
+First, you need to create modal. Instead of SimpleModal, you can implement your own wrapper with your own styles.
 
 ```vue
 <script setup lang="ts">
