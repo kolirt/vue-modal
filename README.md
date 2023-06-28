@@ -17,6 +17,7 @@ Easy to use and highly customizable Vue3 modal package.
 - [Example](#example)
 - [Faq](#faq)
 - [License](#license)
+- [Other projects](#other-projects)
  
 <a href="https://www.buymeacoffee.com/kolirt" target="_blank">
   <img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" >
@@ -107,3 +108,24 @@ function runModal() {
   <button @click="runModal">Open modal</button>
 </template>
 ```
+
+# Demo
+
+[Demo here](https://kolirt.github.io/vue-modal/).
+
+# Example
+
+[Example here](https://github.com/kolirt/vue-modal/blob/master/src).
+
+# FAQ
+
+Check closed [issues](https://github.com/kolirt/vue-modal/issues) to get answers for most asked questions.
+
+# License
+
+[MIT](https://github.com/kolirt/vue-modal/blob/master/LICENSE).
+
+# Other projects
+
+Check out my other projects:
+- [@kolirt/vue-web3-auth](https://github.com/kolirt/vue-web3-auth) - simple WalletConnect v2 integration package for Vue3 apps.
