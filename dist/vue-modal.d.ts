@@ -3,9 +3,11 @@ import type { Plugin as Plugin_2 } from 'vue';
 
 declare type AnimationType = 'slideDown' | 'slideUp' | 'slideLeft' | 'slideRight' | 'fade' | 'none';
 
-export declare function closeModal(): void;
+export declare function closeAllModals(forceCloseAll?: boolean): Promise<void>;
 
-export declare function confirmModal(data?: any): void;
+export declare function closeModal(): Promise<void>;
+
+export declare function confirmModal(data?: any): Promise<any>;
 
 export declare function createModal(options?: Options): Plugin_2;
 
@@ -15,7 +17,11 @@ declare type ModalStyle = {
     'z-index'?: number;
 };
 
-export declare function openModal(component: Component, props?: {}): Promise<unknown>;
+export declare function openModal(component: Component, props?: {}, options?: OpenModalOptions): Promise<unknown>;
+
+declare type OpenModalOptions = {
+    force?: boolean;
+};
 
 declare type Options = {
     transitionTime?: number;

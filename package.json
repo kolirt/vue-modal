@@ -1,6 +1,6 @@
 {
   "name": "@kolirt/vue-modal",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "author": "kolirt",
   "license": "MIT",
@@ -39,6 +39,7 @@
   "bugs": {
     "url": "https://github.com/kolirt/vue-modal/issues"
   },
+  "homepage": "https://github.com/kolirt/vue-modal#readme",
   "peerDependencies": {
     "vue": "^3.0.0"
   },

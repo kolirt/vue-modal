@@ -20,3 +20,13 @@ export type Options = {
     modalStyle?: ModalStyle
     overlayStyle?: OverlayStyle
 }
+
+export type OpenModalOptions = {
+    force?: boolean
+}
+
+export type CloseEventData = {
+    success: boolean
+    forceCloseAll?: boolean
+    data?: any
+}

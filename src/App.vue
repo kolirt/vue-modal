@@ -1,44 +1,64 @@
 <script setup lang="ts">
-import {openModal as masterOpenModal} from '../lib'
-import TestModal from './components/TestModal.vue'
-import Test2Modal from './components/Test2Modal.vue'
 import {notify} from '@kyvg/vue3-notification'
+import {openModal} from '../lib'
+import TestModal from './components/Test1Modal.vue'
+import Test2Modal from './components/Test2Modal.vue'
+import Test3Modal from './components/Test3Modal.vue'
 
 
-function openModal() {
-  masterOpenModal(TestModal, {
-    test: 'modal #1'
+function runModal1() {
+  openModal(TestModal, {
+    test: 'modal1'
   })
       .then((data) => {
         notify({
           type: 'success',
-          title: 'Success modal #1',
+          title: 'Success modal1',
           text: JSON.stringify(data)
         })
       })
       .catch(() => {
         notify({
           type: 'error',
-          title: 'Error modal #1'
+          title: 'Error modal1'
         })
       })
 }
 
-function openModal2() {
-  masterOpenModal(Test2Modal, {
-    test: 'modal #2'
+function runModal2() {
+  openModal(Test2Modal, {
+    test: 'modal2'
   })
       .then((data) => {
         notify({
           type: 'success',
-          title: 'Success modal #2',
+          title: 'Success modal2',
           text: JSON.stringify(data)
         })
       })
       .catch(() => {
         notify({
           type: 'error',
-          title: 'Error modal #2'
+          title: 'Error modal2'
+        })
+      })
+}
+
+function runModal3() {
+  openModal(Test3Modal, {
+    test: 'modal3'
+  })
+      .then((data) => {
+        notify({
+          type: 'success',
+          title: 'Success modal3',
+          text: JSON.stringify(data)
+        })
+      })
+      .catch(() => {
+        notify({
+          type: 'error',
+          title: 'Error modal3'
         })
       })
 }
@@ -68,17 +88,20 @@ function openModal2() {
       <p class="lead">Easy to use and highly customizable Vue3 modal package</p>
 
       <div class="d-grid gap-2 d-sm-flex">
-        <button @click="openModal" class="btn btn-primary">
-          Open modal #1
+        <button @click="runModal1" class="btn btn-primary">
+          Open modal1
         </button>
-        <button @click="openModal2" class="btn btn-primary">
-          Open modal #2
+        <button @click="runModal2" class="btn btn-primary">
+          Open modal2
+        </button>
+        <button @click="runModal3" class="btn btn-primary">
+          Open modal3
         </button>
       </div>
     </div>
   </div>
 
-  <notifications />
+  <notifications/>
   <ModalTarget/>
 </template>
 

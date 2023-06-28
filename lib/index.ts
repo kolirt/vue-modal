@@ -1,3 +1,3 @@
-export {openModal, closeModal, confirmModal} from './actions'
+export {openModal, confirmModal, closeModal, closeAllModals} from './actions'
 
 export {createModal} from './plugin'

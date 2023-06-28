@@ -11,7 +11,12 @@ const props = defineProps({
   index: {type: Number, required: true}
 })
 
-const transitionTime = stateOptions.animationType !== 'none' ? stateOptions.transitionTime : 0
+const show = ref(false)
+const hide = computed(() => props.index !== stateData.modals.length - 1)
+
+const transitionTime = computed(() => {
+  return stateOptions.animationType !== 'none' ? stateOptions.transitionTime : 0
+})
 const baseModalStyle = computed(() => {
   return {
     'padding': stateOptions.modalStyle?.padding,
@@ -21,13 +26,9 @@ const baseModalStyle = computed(() => {
 })
 const baseModalInnerStyle = computed(() => {
   return {
-    'transition': `opacity ${transitionTime}ms ease, visibility ${transitionTime}ms ease, transform ${transitionTime}ms ease`
+    'transition': `opacity ${transitionTime.value}ms ease, visibility ${transitionTime.value}ms ease, transform ${transitionTime.value}ms ease`
   }
 })
-
-const show = ref(false)
-const hide = computed(() => props.index !== stateData.modals.length - 1)
-
 const getClasses = computed(() => {
   return [
     {
@@ -41,7 +42,7 @@ const getClasses = computed(() => {
 function onClose(data: any) {
   if (stateData.modals.length - 1 === props.index) {
     show.value = false
-    setTimeout($emit, transitionTime, Events.Closed, {
+    setTimeout($emit, transitionTime.value, Events.Closed, {
       index: props.index,
       success: data.success,
       data: data.data
@@ -58,7 +59,7 @@ function onEsc(e: Event) {
 onMounted(() => {
   setTimeout(() => {
     show.value = true
-  }, props.index > 0 ? transitionTime : 0)
+  }, props.index > 0 ? transitionTime.value : 0)
   $on(Events.Close, onClose)
   document.addEventListener('keydown', onEsc)
 })
@@ -70,7 +71,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="vue-modal modal" :style="baseModalStyle">
+  <div class="vue-modal" :style="baseModalStyle">
     <div class="vue-modal__inner" :style="baseModalInnerStyle" :class="getClasses">
       <slot></slot>
     </div>

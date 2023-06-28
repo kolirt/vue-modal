@@ -110,7 +110,7 @@ const props = defineProps({
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
   border-top: 1px solid #dee2e6;
-  column-gap: 0.25rem;
+  gap: 0.25rem;
 
   & > :deep(*) {
     //margin: 0.25rem;

@@ -1,10 +1,15 @@
 import type {Component} from 'vue'
-// import type {Options} from './types'
+import type {/*Options,*/ CloseEventData, OpenModalOptions} from './types'
 import {Events} from './types'
 import {addModal, state as stateData} from './data'
 import {$emit, $off, $on} from './event'
 
-export function openModal(component: Component, props?: {}/*, options?: Options*/) {
+/*, options?: Options*/
+export async function openModal(component: Component, props?: {}, options?: OpenModalOptions) {
+    if (options?.force) {
+        await closeAllModals(false)
+    }
+
     const index = stateData.modals.length
     addModal(component, props/*, options*/)
 
@@ -12,11 +17,7 @@ export function openModal(component: Component, props?: {}/*, options?: Options*
         function onClosed(data: any) {
             if (data.index === index) {
                 $off(Events.Closed, onClosed)
-                if (data.success) {
-                    resolve(data.data)
-                } else {
-                    reject()
-                }
+                data.success ? resolve(data.data) : reject()
             }
         }
 
@@ -24,10 +25,47 @@ export function openModal(component: Component, props?: {}/*, options?: Options*
     })
 }
 
-export function closeModal() {
-    $emit(Events.Close, {success: false})
+export function confirmModal(data?: any): Promise<any> {
+    return new Promise((resolve) => {
+        function onClosed(data: any) {
+            $off(Events.Closed, onClosed)
+            resolve(data.data)
+        }
+
+        $on(Events.Closed, onClosed)
+        $emit(Events.Close, {success: true, data} as CloseEventData)
+    })
 }
 
-export function confirmModal(data?: any) {
-    $emit(Events.Close, {success: true, data})
+export function closeModal(): Promise<void> {
+    return new Promise((resolve) => {
+        function onClosed() {
+            $off(Events.Closed, onClosed)
+            resolve()
+        }
+
+        $on(Events.Closed, onClosed)
+        $emit(Events.Close, {success: false} as CloseEventData)
+    })
+}
+
+export function closeAllModals(forceCloseAll = true): Promise<void> {
+    return new Promise((resolve) => {
+        function onClosed() {
+            $off(Events.Closed, onClosed)
+
+            for (let i = stateData.modals.length - 1; i >= 0; i--) {
+                stateData.modals.splice(i, 1)
+                $emit(Events.Closed, {
+                    index: i,
+                    success: false
+                })
+            }
+
+            resolve()
+        }
+
+        $on(Events.Closed, onClosed)
+        $emit(Events.Close, {success: false, forceCloseAll} as CloseEventData)
+    })
 }

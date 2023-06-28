@@ -13,12 +13,13 @@ Easy to use and highly customizable Vue3 modal package.
     - [Setup](#setup)
 - [Usage](#usage)
     - [Basic usage](#basic-usage)
+    - [Advanced usage](#)
 - [Demo](#demo)
 - [Example](#example)
 - [Faq](#faq)
 - [License](#license)
 - [Other projects](#other-projects)
- 
+
 <a href="https://www.buymeacoffee.com/kolirt" target="_blank">
   <img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" >
 </a>
@@ -53,6 +54,7 @@ app.mount('#app')
 Add `ModalTarget` to `App.vue`
 
 ```vue
+
 <template>
   <ModalTarget/>
 </template>
@@ -65,6 +67,7 @@ Add `ModalTarget` to `App.vue`
 First, you need to create modal. Instead of `SimpleModal`, you can implement your own wrapper with your own styles.
 
 ```vue
+
 <script setup lang="ts">
 import {closeModal, confirmModal} from '@kolirt/vue-modal'
 
@@ -117,6 +120,23 @@ function runModal() {
 </template>
 ```
 
+## Advanced usage
+Open modal with clearing modal history.
+
+```js
+openModal(TestModal, {
+    test: 'some props'
+}, {force: true})
+    // runs when modal is closed via confirmModal
+    .then((data) => {
+        console.log('success', data)
+    })
+    // runs when modal is closed via closeModal or esc
+    .catch(() => {
+        console.log('catch')
+    })
+```
+
 # Demo
 
 [Demo here](https://kolirt.github.io/vue-modal/).
@@ -136,4 +156,6 @@ Check closed [issues](https://github.com/kolirt/vue-modal/issues) to get answers
 # Other projects
 
 Check out my other projects:
-- [@kolirt/vue-web3-auth](https://github.com/kolirt/vue-web3-auth) - simple WalletConnect v2 integration package for Vue3 apps.
+
+- [@kolirt/vue-web3-auth](https://github.com/kolirt/vue-web3-auth) - simple WalletConnect v2 integration package for
+  Vue3 apps.

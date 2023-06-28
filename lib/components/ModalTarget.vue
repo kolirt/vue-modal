@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type {CloseEventData} from '../types'
 import {computed, onBeforeUnmount, onMounted, ref} from 'vue'
 import {state as stateOptions} from '../options'
 import {state as stateData} from '../data'
@@ -17,8 +18,8 @@ const overlayStyle = computed(() => {
 const hide = ref(false)
 const activeOverlay = computed(() => stateData.modals.length && !hide.value)
 
-function onClose() {
-  if (stateData.modals.length === 1) {
+function onClose({forceCloseAll}: CloseEventData) {
+  if (stateData.modals.length === 1 && forceCloseAll !== false || forceCloseAll) {
     hide.value = true
     setTimeout(() => {
       hide.value = false
