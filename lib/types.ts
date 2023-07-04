@@ -1,4 +1,6 @@
 export enum Events {
+    Open = 'open',
+    Opened = 'opened',
     Close = 'close',
     Closed = 'closed'
 }

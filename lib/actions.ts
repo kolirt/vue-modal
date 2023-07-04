@@ -12,6 +12,7 @@ export async function openModal(component: Component, props?: {}, options?: Open
 
     const index = stateData.modals.length
     addModal(component, props/*, options*/)
+    $emit(Events.Open)
 
     return new Promise((resolve, reject) => {
         function onClosed(data: any) {

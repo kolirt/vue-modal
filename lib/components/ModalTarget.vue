@@ -6,6 +6,7 @@ import {state as stateData} from '../data'
 import {$off, $on} from '../event'
 import {Events} from '../types'
 import BaseModal from './BaseModal.vue'
+import {useLock} from '../composables/useLock'
 
 const transitionTime = stateOptions.animationType !== 'none' ? stateOptions.transitionTime : 0
 const overlayStyle = computed(() => {
@@ -27,12 +28,26 @@ function onClose({forceCloseAll}: CloseEventData) {
   }
 }
 
+const lock =useLock()
+
+function onClosed() {
+  lock.toggleLock(false)
+}
+
+function onOpen() {
+  lock.toggleLock(true)
+}
+
 onMounted(() => {
   $on(Events.Close, onClose)
+  $on(Events.Closed, onClosed)
+  $on(Events.Open, onOpen)
 })
 
 onBeforeUnmount(() => {
   $off(Events.Close, onClose)
+  $off(Events.Closed, onClosed)
+  $off(Events.Open, onOpen)
 })
 </script>
 

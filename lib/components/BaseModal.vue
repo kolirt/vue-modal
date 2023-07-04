@@ -62,6 +62,7 @@ onMounted(() => {
   }, props.index > 0 ? transitionTime.value : 0)
   $on(Events.Close, onClose)
   document.addEventListener('keydown', onEsc)
+  $emit(Events.Opened)
 })
 
 onBeforeUnmount(() => {
@@ -86,6 +87,7 @@ onBeforeUnmount(() => {
   width: 100%;
   height: 100%;
   display: flex;
+  overflow-y: auto;
 }
 
 .vue-modal__inner {
