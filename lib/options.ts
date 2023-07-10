@@ -5,7 +5,7 @@ export const state = reactive<Options>({
     transitionTime: 200,
     animationType: 'slideDown',
     modalStyle: {
-        padding: '5rem 2.5rem',
+        padding: undefined,
         align: 'center',
         'z-index': 201
     },
