@@ -1,6 +1,6 @@
 {
   "name": "@kolirt/vue-modal",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Simple Vue3 modal package",
   "author": "kolirt",
   "license": "MIT",

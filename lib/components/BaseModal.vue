@@ -17,25 +17,21 @@ const hide = computed(() => props.index !== stateData.modals.length - 1)
 const transitionTime = computed(() => {
   return stateOptions.animationType !== 'none' ? (stateOptions.transitionTime || 0) : 0
 })
-const baseModalStyle = computed(() => {
+const getStyle = computed(() => {
   return {
     'padding': stateOptions.modalStyle?.padding,
-    'z-index': stateOptions.modalStyle?.['z-index']
-  }
-})
-const baseModalInnerStyle = computed(() => {
-  return {
+    'z-index': stateOptions.modalStyle?.['z-index'],
     'transition': `opacity ${transitionTime.value}ms ease, visibility ${transitionTime.value}ms ease, transform ${transitionTime.value}ms ease`
   }
 })
 const getClasses = computed(() => {
   return [
     {
-      'vue-modal__inner--active': show.value,
-      'vue-modal__inner--hide': hide.value,
-      'vue-modal__inner--center': stateOptions.modalStyle?.align === 'center'
+      'vue-modal--active': show.value,
+      'vue-modal--hide': hide.value
     },
-    `vue-modal__inner--${stateOptions.animationType}`
+    `vue-modal--${stateOptions.modalStyle?.align}`,
+    `vue-modal--${stateOptions.animationType}`
   ]
 })
 
@@ -72,10 +68,8 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="vue-modal" :style="baseModalStyle">
-    <div class="vue-modal__inner" :style="baseModalInnerStyle" :class="getClasses">
-      <slot></slot>
-    </div>
+  <div class="vue-modal" :class="getClasses" :style="getStyle">
+    <slot></slot>
   </div>
 </template>
 
@@ -86,39 +80,38 @@ onBeforeUnmount(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
   overflow-y: auto;
-}
-
-.vue-modal__inner {
-  margin-bottom: auto;
   opacity: 0;
   visibility: hidden;
-  width: 100%;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 
-  &.vue-modal__inner--slideDown {
+  &.vue-modal--slideDown {
     transform: translate(0, -40px);
   }
 
-  &.vue-modal__inner--slideUp {
+  &.vue-modal--slideUp {
     transform: translate(0, 40px);
   }
 
-  &.vue-modal__inner--slideLeft {
+  &.vue-modal--slideLeft {
     transform: translate(-40px, 0);
   }
 
-  &.vue-modal__inner--slideRight {
+  &.vue-modal--slideRight {
     transform: translate(40px, 0);
   }
 
-  &.vue-modal__inner--center {
-    margin-top: auto;
+  &.vue-modal--center {
+    align-items: center;
   }
 
-  &.vue-modal__inner--active:not(.vue-modal__inner--hide) {
+  &.vue-modal--top {
+    align-items: flex-start;
+  }
+
+  &.vue-modal--active:not(.vue-modal--hide) {
     transform: translate(0, 0);
     opacity: 1;
     visibility: visible;
