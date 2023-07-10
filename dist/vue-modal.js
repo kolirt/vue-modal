@@ -1,5 +1,5 @@
-(function(){var a;"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.nonce=(a=document.head.querySelector("meta[property=csp-nonce]"))==null?void 0:a.content,e.appendChild(document.createTextNode(`.vue-modal[data-v-5f79c1cd]{position:fixed;top:0;left:0;width:100%;height:100%;display:flex;overflow-y:auto}.vue-modal__inner[data-v-5f79c1cd]{margin-top:auto;margin-bottom:auto;height:auto;opacity:0;visibility:hidden;width:100%;display:flex;justify-content:center}.vue-modal__inner.vue-modal__inner--slideDown[data-v-5f79c1cd]{transform:translateY(-40px)}.vue-modal__inner.vue-modal__inner--slideUp[data-v-5f79c1cd]{transform:translateY(40px)}.vue-modal__inner.vue-modal__inner--slideLeft[data-v-5f79c1cd]{transform:translate(-40px)}.vue-modal__inner.vue-modal__inner--slideRight[data-v-5f79c1cd]{transform:translate(40px)}.vue-modal__inner.vue-modal__inner--active[data-v-5f79c1cd]:not(.vue-modal__inner--hide){transform:translate(0);opacity:1;visibility:visible}.vue-modals[data-v-48abfbb2]{width:0}.vue-modals[data-v-48abfbb2] *{box-sizing:border-box}.vue-modals-overlay[data-v-48abfbb2]{position:fixed;top:0;left:0;width:100%;height:100%;opacity:0;visibility:hidden}.vue-modals-overlay.active[data-v-48abfbb2]{opacity:1;visibility:visible}.vue-modal-content[data-v-39a87773]{background:#fff;border-radius:.5rem;font-family:inherit}.vue-modal-content.size-sm[data-v-39a87773]{width:100%;max-width:576px}.vue-modal-content.size-md[data-v-39a87773]{width:100%;max-width:768px}.vue-modal-content.size-lg[data-v-39a87773]{width:100%;max-width:992px}.vue-modal-content.size-xl[data-v-39a87773]{width:100%;max-width:1200px}.vue-modal-content.size-xxl[data-v-39a87773]{width:100%;max-width:1400px}.vue-modal-header[data-v-39a87773]{padding:1rem;display:flex;flex-shrink:0;align-items:center;justify-content:space-between;border-bottom:1px solid #dee2e6;border-top-left-radius:.5rem;border-top-right-radius:.5rem}.vue-modal-title[data-v-39a87773]{font-size:1.25rem;font-weight:500;margin:0}.vue-modal-btn-close[data-v-39a87773]{opacity:.5;width:2rem;height:2rem;background:transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;border:none;padding:0;cursor:pointer;transition:opacity .2s ease}.vue-modal-btn-close[data-v-39a87773]:hover{opacity:1}.vue-modal-body[data-v-39a87773]{padding:1rem}.vue-modal-footer[data-v-39a87773]{padding:1rem;display:flex;flex-wrap:wrap;justify-content:flex-end;border-bottom-left-radius:.5rem;border-bottom-right-radius:.5rem;border-top:1px solid #dee2e6;gap:.25rem}`)),document.head.appendChild(e)}}catch(t){console.error("vite-plugin-css-injected-by-js",t)}})();
-import { reactive as I, computed as f, markRaw as D, defineComponent as M, ref as z, onMounted as N, onBeforeUnmount as R, openBlock as r, createElementBlock as y, normalizeStyle as k, createElementVNode as $, normalizeClass as E, renderSlot as b, Fragment as H, renderList as V, unref as T, createBlock as P, withCtx as j, resolveDynamicComponent as q, normalizeProps as F, guardReactiveProps as U, useSlots as A, toDisplayString as G, createCommentVNode as x } from "vue";
+(function(){var a;"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.nonce=(a=document.head.querySelector("meta[property=csp-nonce]"))==null?void 0:a.content,e.appendChild(document.createTextNode(`.vue-modal[data-v-75f88310]{position:fixed;top:0;left:0;width:100%;height:100%;display:flex;overflow-y:auto}.vue-modal__inner[data-v-75f88310]{margin-bottom:auto;opacity:0;visibility:hidden;width:100%;display:flex;justify-content:center}.vue-modal__inner.vue-modal__inner--slideDown[data-v-75f88310]{transform:translateY(-40px)}.vue-modal__inner.vue-modal__inner--slideUp[data-v-75f88310]{transform:translateY(40px)}.vue-modal__inner.vue-modal__inner--slideLeft[data-v-75f88310]{transform:translate(-40px)}.vue-modal__inner.vue-modal__inner--slideRight[data-v-75f88310]{transform:translate(40px)}.vue-modal__inner.vue-modal__inner--center[data-v-75f88310]{margin-top:auto}.vue-modal__inner.vue-modal__inner--active[data-v-75f88310]:not(.vue-modal__inner--hide){transform:translate(0);opacity:1;visibility:visible}.vue-modals[data-v-48abfbb2]{width:0}.vue-modals[data-v-48abfbb2] *{box-sizing:border-box}.vue-modals-overlay[data-v-48abfbb2]{position:fixed;top:0;left:0;width:100%;height:100%;opacity:0;visibility:hidden}.vue-modals-overlay.active[data-v-48abfbb2]{opacity:1;visibility:visible}.vue-modal-content[data-v-39a87773]{background:#fff;border-radius:.5rem;font-family:inherit}.vue-modal-content.size-sm[data-v-39a87773]{width:100%;max-width:576px}.vue-modal-content.size-md[data-v-39a87773]{width:100%;max-width:768px}.vue-modal-content.size-lg[data-v-39a87773]{width:100%;max-width:992px}.vue-modal-content.size-xl[data-v-39a87773]{width:100%;max-width:1200px}.vue-modal-content.size-xxl[data-v-39a87773]{width:100%;max-width:1400px}.vue-modal-header[data-v-39a87773]{padding:1rem;display:flex;flex-shrink:0;align-items:center;justify-content:space-between;border-bottom:1px solid #dee2e6;border-top-left-radius:.5rem;border-top-right-radius:.5rem}.vue-modal-title[data-v-39a87773]{font-size:1.25rem;font-weight:500;margin:0}.vue-modal-btn-close[data-v-39a87773]{opacity:.5;width:2rem;height:2rem;background:transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;border:none;padding:0;cursor:pointer;transition:opacity .2s ease}.vue-modal-btn-close[data-v-39a87773]:hover{opacity:1}.vue-modal-body[data-v-39a87773]{padding:1rem}.vue-modal-footer[data-v-39a87773]{padding:1rem;display:flex;flex-wrap:wrap;justify-content:flex-end;border-bottom-left-radius:.5rem;border-bottom-right-radius:.5rem;border-top:1px solid #dee2e6;gap:.25rem}`)),document.head.appendChild(e)}}catch(t){console.error("vite-plugin-css-injected-by-js",t)}})();
+import { reactive as I, computed as f, markRaw as D, defineComponent as T, ref as M, onMounted as N, onBeforeUnmount as R, openBlock as c, createElementBlock as v, normalizeStyle as x, createElementVNode as z, normalizeClass as $, renderSlot as k, Fragment as H, renderList as V, unref as b, createBlock as P, withCtx as q, resolveDynamicComponent as F, normalizeProps as U, guardReactiveProps as j, useSlots as A, toDisplayString as G, createCommentVNode as S } from "vue";
 import J from "js-event-bus";
 const s = I({
   transitionTime: 200,
@@ -15,50 +15,50 @@ const s = I({
   }
 });
 function K(e) {
-  var o, t, l, a, i;
-  e != null && e.transitionTime && (s.transitionTime = e.transitionTime), e != null && e.animationType && (s.animationType = e.animationType), e != null && e.modalStyle && ((o = e.modalStyle) != null && o.padding && (s.modalStyle.padding = e.modalStyle.padding), (t = e.modalStyle) != null && t.align && (s.modalStyle.align = e.modalStyle.align), (l = e.modalStyle) != null && l["z-index"] && (s.modalStyle["z-index"] = e.modalStyle["z-index"])), (a = e == null ? void 0 : e.overlayStyle) != null && a["z-index"] && (s.overlayStyle["z-index"] = e.overlayStyle["z-index"]), (i = e == null ? void 0 : e.overlayStyle) != null && i["background-color"] && (s.overlayStyle["background-color"] = e.overlayStyle["background-color"]);
+  var o, t, l, a, r;
+  e != null && e.transitionTime && (s.transitionTime = e.transitionTime), e != null && e.animationType && (s.animationType = e.animationType), e != null && e.modalStyle && ((o = e.modalStyle) != null && o.padding && (s.modalStyle.padding = e.modalStyle.padding), (t = e.modalStyle) != null && t.align && (s.modalStyle.align = e.modalStyle.align), (l = e.modalStyle) != null && l["z-index"] && (s.modalStyle["z-index"] = e.modalStyle["z-index"])), (a = e == null ? void 0 : e.overlayStyle) != null && a["z-index"] && (s.overlayStyle["z-index"] = e.overlayStyle["z-index"]), (r = e == null ? void 0 : e.overlayStyle) != null && r["background-color"] && (s.overlayStyle["background-color"] = e.overlayStyle["background-color"]);
 }
-const d = I({
+const i = I({
   modals: []
-}), fe = f(() => d.modals.length > 0);
+}), fe = f(() => i.modals.length > 0);
 function Q(e, o, t) {
-  d.modals.push(D({ component: e, props: o, options: t }));
+  i.modals.push(D({ component: e, props: o, options: t }));
 }
 function X() {
-  d.modals.pop();
+  i.modals.pop();
 }
-const B = new J();
+const E = new J();
 function g(e, ...o) {
-  B.emit(e, null, ...o);
+  E.emit(e, null, ...o);
 }
 function u(e, o) {
-  B.on(e, o);
+  E.on(e, o);
 }
-function v(e, o) {
-  B.detach(e, o);
+function y(e, o) {
+  E.detach(e, o);
 }
 var n = /* @__PURE__ */ ((e) => (e.Open = "open", e.Opened = "opened", e.Close = "close", e.Closed = "closed", e))(n || {});
 function Y(e) {
   return "key" in e ? e.key === "Escape" || e.key === "Esc" : e.keyCode === 27;
 }
-async function ye(e, o, t) {
+async function ve(e, o, t) {
   t != null && t.force && await Z(!1);
-  const l = d.modals.length;
+  const l = i.modals.length;
   return Q(
     e,
     o
     /*, options*/
-  ), g(n.Open), new Promise((a, i) => {
+  ), g(n.Open), new Promise((a, r) => {
     function _(m) {
-      m.index === l && (v(n.Closed, _), m.success ? a(m.data) : i());
+      m.index === l && (y(n.Closed, _), m.success ? a(m.data) : r());
     }
     u(n.Closed, _);
   });
 }
-function ve(e) {
+function ye(e) {
   return new Promise((o) => {
     function t(l) {
-      v(n.Closed, t), o(l.data);
+      y(n.Closed, t), o(l.data);
     }
     u(n.Closed, t), g(n.Close, { success: !0, data: e });
   });
@@ -66,7 +66,7 @@ function ve(e) {
 function W() {
   return new Promise((e) => {
     function o() {
-      v(n.Closed, o), e();
+      y(n.Closed, o), e();
     }
     u(n.Closed, o), g(n.Close, { success: !1 });
   });
@@ -74,9 +74,9 @@ function W() {
 function Z(e = !0) {
   return new Promise((o) => {
     function t() {
-      v(n.Closed, t);
-      for (let l = d.modals.length - 1; l >= 0; l--)
-        d.modals.splice(l, 1), g(n.Closed, {
+      y(n.Closed, t);
+      for (let l = i.modals.length - 1; l >= 0; l--)
+        i.modals.splice(l, 1), g(n.Closed, {
           index: l,
           success: !1
         });
@@ -85,63 +85,66 @@ function Z(e = !0) {
     u(n.Closed, t), g(n.Close, { success: !1, forceCloseAll: e });
   });
 }
-const w = /* @__PURE__ */ M({
+const w = /* @__PURE__ */ T({
   __name: "BaseModal",
   props: {
     index: { type: Number, required: !0 }
   },
   setup(e) {
-    const o = e, t = z(!1), l = f(() => o.index !== d.modals.length - 1), a = f(() => s.animationType !== "none" && s.transitionTime || 0), i = f(() => {
-      var c, C, S;
+    const o = e, t = M(!1), l = f(() => o.index !== i.modals.length - 1), a = f(() => s.animationType !== "none" && s.transitionTime || 0), r = f(() => {
+      var d, C;
       return {
-        padding: (c = s.modalStyle) == null ? void 0 : c.padding,
-        "z-index": (C = s.modalStyle) == null ? void 0 : C["z-index"],
-        "justify-content": (S = s.modalStyle) == null ? void 0 : S.align
+        padding: (d = s.modalStyle) == null ? void 0 : d.padding,
+        "z-index": (C = s.modalStyle) == null ? void 0 : C["z-index"]
       };
     }), _ = f(() => ({
       transition: `opacity ${a.value}ms ease, visibility ${a.value}ms ease, transform ${a.value}ms ease`
-    })), m = f(() => [
-      {
-        "vue-modal__inner--active": t.value,
-        "vue-modal__inner--hide": l.value
-      },
-      `vue-modal__inner--${s.animationType}`
-    ]);
-    function h(c) {
-      d.modals.length - 1 === o.index && (t.value = !1, setTimeout(g, a.value, n.Closed, {
+    })), m = f(() => {
+      var d;
+      return [
+        {
+          "vue-modal__inner--active": t.value,
+          "vue-modal__inner--hide": l.value,
+          "vue-modal__inner--center": ((d = s.modalStyle) == null ? void 0 : d.align) === "center"
+        },
+        `vue-modal__inner--${s.animationType}`
+      ];
+    });
+    function h(d) {
+      i.modals.length - 1 === o.index && (t.value = !1, setTimeout(g, a.value, n.Closed, {
         index: o.index,
-        success: c.success,
-        data: c.data
+        success: d.success,
+        data: d.data
       }));
     }
-    function p(c) {
-      Y(c) && d.modals.length - 1 === o.index && W();
+    function p(d) {
+      Y(d) && i.modals.length - 1 === o.index && W();
     }
     return N(() => {
       setTimeout(() => {
         t.value = !0;
       }, o.index > 0 ? a.value : 0), u(n.Close, h), document.addEventListener("keydown", p), g(n.Opened);
     }), R(() => {
-      v(n.Close, h), document.removeEventListener("keydown", p);
-    }), (c, C) => (r(), y("div", {
+      y(n.Close, h), document.removeEventListener("keydown", p);
+    }), (d, C) => (c(), v("div", {
       class: "vue-modal",
-      style: k(i.value)
+      style: x(r.value)
     }, [
-      $("div", {
-        class: E(["vue-modal__inner", m.value]),
-        style: k(_.value)
+      z("div", {
+        class: $(["vue-modal__inner", m.value]),
+        style: x(_.value)
       }, [
-        b(c.$slots, "default", {}, void 0, !0)
+        k(d.$slots, "default", {}, void 0, !0)
       ], 6)
     ], 4));
   }
 });
-const L = (e, o) => {
+const B = (e, o) => {
   const t = e.__vccOpts || e;
   for (const [l, a] of o)
     t[l] = a;
   return t;
-}, O = /* @__PURE__ */ L(w, [["__scopeId", "data-v-5f79c1cd"]]);
+}, O = /* @__PURE__ */ B(w, [["__scopeId", "data-v-75f88310"]]);
 function ee() {
   var l;
   const e = document.createElement("div");
@@ -152,7 +155,7 @@ function ee() {
   return (l = e.parentNode) == null || l.removeChild(e), t;
 }
 function oe() {
-  const e = z(ee());
+  const e = M(ee());
   function o() {
     document.documentElement.style.overflow = "hidden", document.documentElement.scrollHeight > document.documentElement.clientHeight && (document.body.style.paddingRight = `${e.value}px`);
   }
@@ -167,15 +170,15 @@ function oe() {
     toggleLock: l
   };
 }
-const te = { class: "vue-modals" }, le = /* @__PURE__ */ M({
+const te = { class: "vue-modals" }, le = /* @__PURE__ */ T({
   __name: "ModalTarget",
   setup(e) {
     const o = s.animationType !== "none" && s.transitionTime || 0, t = f(() => ({
       ...s == null ? void 0 : s.overlayStyle,
       transition: `opacity ${o}ms ease, visibility ${o}ms ease`
-    })), l = z(!1), a = f(() => d.modals.length && !l.value);
-    function i({ forceCloseAll: p }) {
-      (d.modals.length === 1 && p !== !1 || p) && (l.value = !0, setTimeout(() => {
+    })), l = M(!1), a = f(() => i.modals.length && !l.value);
+    function r({ forceCloseAll: p }) {
+      (i.modals.length === 1 && p !== !1 || p) && (l.value = !0, setTimeout(() => {
         l.value = !1;
       }, o));
     }
@@ -187,27 +190,27 @@ const te = { class: "vue-modals" }, le = /* @__PURE__ */ M({
       _.toggleLock(!0);
     }
     return N(() => {
-      u(n.Close, i), u(n.Closed, m), u(n.Open, h);
+      u(n.Close, r), u(n.Closed, m), u(n.Open, h);
     }), R(() => {
-      v(n.Close, i), v(n.Closed, m), v(n.Open, h);
-    }), (p, c) => (r(), y("div", te, [
-      (r(!0), y(H, null, V(T(d).modals, (C, S) => (r(), P(O, {
-        index: S,
-        key: S
+      y(n.Close, r), y(n.Closed, m), y(n.Open, h);
+    }), (p, d) => (c(), v("div", te, [
+      (c(!0), v(H, null, V(b(i).modals, (C, L) => (c(), P(O, {
+        index: L,
+        key: L
       }, {
-        default: j(() => [
-          (r(), P(q(C.component), F(U(C.props)), null, 16))
+        default: q(() => [
+          (c(), P(F(C.component), U(j(C.props)), null, 16))
         ]),
         _: 2
       }, 1032, ["index"]))), 128)),
-      $("div", {
-        class: E(["vue-modals-overlay", { active: a.value }]),
-        style: k(t.value)
+      z("div", {
+        class: $(["vue-modals-overlay", { active: a.value }]),
+        style: x(t.value)
       }, null, 6)
     ]));
   }
 });
-const ne = /* @__PURE__ */ L(le, [["__scopeId", "data-v-48abfbb2"]]), ae = {
+const ne = /* @__PURE__ */ B(le, [["__scopeId", "data-v-48abfbb2"]]), ae = {
   key: 0,
   class: "vue-modal-header"
 }, se = {
@@ -216,7 +219,7 @@ const ne = /* @__PURE__ */ L(le, [["__scopeId", "data-v-48abfbb2"]]), ae = {
 }, de = { class: "vue-modal-body" }, ie = {
   key: 1,
   class: "vue-modal-footer"
-}, ce = /* @__PURE__ */ M({
+}, re = /* @__PURE__ */ T({
   __name: "SimpleModal",
   props: {
     title: {},
@@ -231,45 +234,45 @@ const ne = /* @__PURE__ */ L(le, [["__scopeId", "data-v-48abfbb2"]]), ae = {
   },
   setup(e) {
     const o = e, t = A();
-    return (l, a) => (r(), y("div", {
-      class: E(["vue-modal-content", `size-${o.size}`])
+    return (l, a) => (c(), v("div", {
+      class: $(["vue-modal-content", `size-${o.size}`])
     }, [
-      o.title || o.showClose ? (r(), y("div", ae, [
-        o.title ? (r(), y("h1", se, G(o.title), 1)) : x("", !0),
-        o.showClose ? (r(), y("button", {
+      o.title || o.showClose ? (c(), v("div", ae, [
+        o.title ? (c(), v("h1", se, G(o.title), 1)) : S("", !0),
+        o.showClose ? (c(), v("button", {
           key: 1,
-          onClick: a[0] || (a[0] = (i) => T(W)()),
+          onClick: a[0] || (a[0] = (r) => b(W)()),
           class: "vue-modal-btn-close",
           "aria-label": "Close"
-        })) : x("", !0)
-      ])) : x("", !0),
-      $("div", de, [
-        b(l.$slots, "default", {}, void 0, !0)
+        })) : S("", !0)
+      ])) : S("", !0),
+      z("div", de, [
+        k(l.$slots, "default", {}, void 0, !0)
       ]),
-      T(t).footer ? (r(), y("div", ie, [
-        b(l.$slots, "footer", {}, void 0, !0)
-      ])) : x("", !0)
+      b(t).footer ? (c(), v("div", ie, [
+        k(l.$slots, "footer", {}, void 0, !0)
+      ])) : S("", !0)
     ], 2));
   }
 });
-const re = /* @__PURE__ */ L(ce, [["__scopeId", "data-v-39a87773"]]);
+const ce = /* @__PURE__ */ B(re, [["__scopeId", "data-v-39a87773"]]);
 function _e(e) {
   return {
     install(o) {
-      K(e || {}), o.component("ModalTarget", ne), o.component("SimpleModal", re), u(n.Closed, X);
+      K(e || {}), o.component("ModalTarget", ne), o.component("SimpleModal", ce), u(n.Closed, X);
     }
   };
 }
 export {
-  v as $off,
+  y as $off,
   u as $on,
   n as Events,
   ne as ModalTarget,
   Z as closeAllModals,
   W as closeModal,
-  ve as confirmModal,
+  ye as confirmModal,
   _e as createModal,
   fe as isOpened,
-  ye as openModal,
+  ve as openModal,
   oe as useLock
 };

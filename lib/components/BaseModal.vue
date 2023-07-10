@@ -20,8 +20,7 @@ const transitionTime = computed(() => {
 const baseModalStyle = computed(() => {
   return {
     'padding': stateOptions.modalStyle?.padding,
-    'z-index': stateOptions.modalStyle?.['z-index'],
-    'justify-content': stateOptions.modalStyle?.align
+    'z-index': stateOptions.modalStyle?.['z-index']
   }
 })
 const baseModalInnerStyle = computed(() => {
@@ -33,7 +32,8 @@ const getClasses = computed(() => {
   return [
     {
       'vue-modal__inner--active': show.value,
-      'vue-modal__inner--hide': hide.value
+      'vue-modal__inner--hide': hide.value,
+      'vue-modal__inner--center': stateOptions.modalStyle?.align === 'center'
     },
     `vue-modal__inner--${stateOptions.animationType}`
   ]
@@ -91,9 +91,7 @@ onBeforeUnmount(() => {
 }
 
 .vue-modal__inner {
-  margin-top: auto;
   margin-bottom: auto;
-  height: auto;
   opacity: 0;
   visibility: hidden;
   width: 100%;
@@ -114,6 +112,10 @@ onBeforeUnmount(() => {
 
   &.vue-modal__inner--slideRight {
     transform: translate(40px, 0);
+  }
+
+  &.vue-modal__inner--center {
+    margin-top: auto;
   }
 
   &.vue-modal__inner--active:not(.vue-modal__inner--hide) {
