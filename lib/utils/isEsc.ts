@@ -1,4 +1,4 @@
-export function isEsc(e: Event): boolean {
+export default function isEsc(e: Event): boolean {
     if ('key' in e) {
         return (e.key === 'Escape' || e.key === 'Esc')
     }

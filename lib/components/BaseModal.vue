@@ -4,7 +4,7 @@ import {$emit, $off, $on} from '../event'
 import {state as stateData} from '../data'
 import {state as stateOptions} from '../options'
 import {Events} from '../types'
-import {isEsc} from '../utils/isEsc'
+import isEsc from '../utils/isEsc'
 import {closeModal} from '../actions'
 
 const props = defineProps({
@@ -15,7 +15,7 @@ const show = ref(false)
 const hide = computed(() => props.index !== stateData.modals.length - 1)
 
 const transitionTime = computed(() => {
-  return stateOptions.animationType !== 'none' ? stateOptions.transitionTime : 0
+  return stateOptions.animationType !== 'none' ? (stateOptions.transitionTime || 0) : 0
 })
 const baseModalStyle = computed(() => {
   return {

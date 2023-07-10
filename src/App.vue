@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import {notify} from '@kyvg/vue3-notification'
-import {openModal} from '../lib'
+import {ModalTarget, openModal} from '../lib'
 import TestModal from './components/Test1Modal.vue'
 import Test2Modal from './components/Test2Modal.vue'
 import Test3Modal from './components/Test3Modal.vue'
-
 
 function runModal1() {
   openModal(TestModal, {
@@ -101,9 +100,16 @@ function runModal3() {
     </div>
   </div>
 
-  <notifications/>
+  <notifications class="notifications"/>
   <ModalTarget/>
 </template>
 
 <style scoped>
+.notifications {
+  position: fixed;
+  right: unset !important;
+  left: 100vw;
+  transform: translateX(-100%);
+  margin-left: -15px;
+}
 </style>

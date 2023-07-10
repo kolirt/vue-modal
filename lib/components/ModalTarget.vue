@@ -8,7 +8,7 @@ import {Events} from '../types'
 import BaseModal from './BaseModal.vue'
 import {useLock} from '../composables/useLock'
 
-const transitionTime = stateOptions.animationType !== 'none' ? stateOptions.transitionTime : 0
+const transitionTime = stateOptions.animationType !== 'none' ? (stateOptions.transitionTime || 0) : 0
 const overlayStyle = computed(() => {
   return {
     ...stateOptions?.overlayStyle,
@@ -28,7 +28,7 @@ function onClose({forceCloseAll}: CloseEventData) {
   }
 }
 
-const lock =useLock()
+const lock = useLock()
 
 function onClosed() {
   lock.toggleLock(false)
