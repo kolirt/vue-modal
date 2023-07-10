@@ -159,7 +159,7 @@ openModal(TestModal, {
 
 # FAQ
 
-Check closed [issues](https://github.com/kolirt/vue-modal/issues) to get answers for most asked questions.
+Check closed [issues](https://github.com/kolirt/vue-modal/issues) with `FAQ` label to get answers for most asked questions.
 
 # License
 
