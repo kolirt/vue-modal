@@ -6,7 +6,7 @@ import {$emit, $off, $on} from './event'
 
 /*, options?: Options*/
 export async function openModal(component: Component, props?: {}, options?: OpenModalOptions) {
-    if (options?.force) {
+    if (options?.force && stateData.modals.length) {
         await closeAllModals(false)
     }
 

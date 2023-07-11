@@ -42,7 +42,7 @@ function Y(e) {
   return "key" in e ? e.key === "Escape" || e.key === "Esc" : e.keyCode === 27;
 }
 async function ve(e, o, t) {
-  t != null && t.force && await Z(!1);
+  t != null && t.force && i.modals.length && await Z(!1);
   const l = i.modals.length;
   return Q(
     e,
