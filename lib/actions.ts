@@ -5,7 +5,7 @@ import {addModal, state as stateData} from './data'
 import {$emit, $off, $on} from './event'
 
 /*, options?: Options*/
-export async function openModal(component: Component, props?: {}, options?: OpenModalOptions) {
+export async function openModal<T = unknown>(component: Component, props?: {}, options?: OpenModalOptions) {
     if (options?.force && stateData.modals.length) {
         await closeAllModals(false)
     }
@@ -14,7 +14,7 @@ export async function openModal(component: Component, props?: {}, options?: Open
     addModal(component, props/*, options*/)
     $emit(Events.Open)
 
-    return new Promise((resolve, reject) => {
+    return new Promise<T>((resolve, reject) => {
         function onClosed(data: any) {
             if (data.index === index) {
                 $off(Events.Closed, onClosed)

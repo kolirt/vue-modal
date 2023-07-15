@@ -40,7 +40,7 @@ declare type ModalStyle = {
 
 export declare const ModalTarget: DefineComponent<{}, {}, {}, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {}, string, VNodeProps & AllowedComponentProps & ComponentCustomProps, Readonly<ExtractPropTypes<{}>>, {}, {}>;
 
-export declare function openModal(component: Component, props?: {}, options?: OpenModalOptions): Promise<unknown>;
+export declare function openModal<T = unknown>(component: Component, props?: {}, options?: OpenModalOptions): Promise<T>;
 
 declare type OpenModalOptions = {
     force?: boolean;
