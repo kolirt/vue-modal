@@ -44,6 +44,7 @@ export declare function openModal<T = unknown>(component: Component, props?: {},
 
 declare type OpenModalOptions = {
     force?: boolean;
+    modalStyle?: ModalStyle;
 };
 
 declare type Options = {
