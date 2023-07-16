@@ -53,7 +53,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="vue-modals">
-    <BaseModal v-for="(item, index) in stateData.modals" :index="index" :key="index">
+    <BaseModal v-for="(item, index) in stateData.modals" :index="index" :item="item" :key="index">
       <component :is="item.component" v-bind="item.props"/>
     </BaseModal>
 

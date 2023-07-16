@@ -8,6 +8,10 @@ import Test3Modal from './components/Test3Modal.vue'
 function runModal1() {
   openModal(TestModal, {
     test: 'modal1'
+  }, {
+    modalStyle: {
+      align: 'top',
+    }
   })
       .then((data) => {
         notify({

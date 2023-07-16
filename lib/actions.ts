@@ -4,14 +4,13 @@ import {Events} from './types'
 import {addModal, state as stateData} from './data'
 import {$emit, $off, $on} from './event'
 
-/*, options?: Options*/
 export async function openModal<T = unknown>(component: Component, props?: {}, options?: OpenModalOptions) {
     if (options?.force && stateData.modals.length) {
         await closeAllModals(false)
     }
 
     const index = stateData.modals.length
-    addModal(component, props/*, options*/)
+    addModal(component, props, options)
     $emit(Events.Open)
 
     return new Promise<T>((resolve, reject) => {

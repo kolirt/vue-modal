@@ -1,3 +1,5 @@
+import type {Component} from 'vue'
+
 export enum Events {
     Open = 'open',
     Opened = 'opened',
@@ -25,10 +27,17 @@ export type Options = {
 
 export type OpenModalOptions = {
     force?: boolean
+    modalStyle?: ModalStyle
 }
 
 export type CloseEventData = {
     success: boolean
     forceCloseAll?: boolean
     data?: any
+}
+
+export interface ModalItem  {
+    component: Component,
+    props?: {} | [],
+    options?: OpenModalOptions
 }

@@ -1,14 +1,16 @@
 <script setup lang="ts">
-import {computed, onBeforeUnmount, onMounted, ref} from 'vue'
-import {$emit, $off, $on} from '../event'
-import {state as stateData} from '../data'
-import {state as stateOptions} from '../options'
-import {Events} from '../types'
+import type {ModalItem} from '../types'
+import {computed, onBeforeUnmount, onMounted, PropType, ref} from 'vue'
 import isEsc from '../utils/isEsc'
 import {closeModal} from '../actions'
+import {state as stateData} from '../data'
+import {$emit, $off, $on} from '../event'
+import {state as stateOptions} from '../options'
+import {Events} from '../types'
 
 const props = defineProps({
-  index: {type: Number, required: true}
+  index: {type: Number, required: true},
+  item: {type: Object as PropType<ModalItem>}
 })
 
 const show = ref(false)
@@ -19,8 +21,8 @@ const transitionTime = computed(() => {
 })
 const getStyle = computed(() => {
   return {
-    'padding': stateOptions.modalStyle?.padding,
-    'z-index': stateOptions.modalStyle?.['z-index'],
+    'padding': props.item?.options?.modalStyle?.padding ?? stateOptions.modalStyle?.padding,
+    'z-index': props.item?.options?.modalStyle?.['z-index'] ?? stateOptions.modalStyle?.['z-index'],
     'transition': `opacity ${transitionTime.value}ms ease, visibility ${transitionTime.value}ms ease, transform ${transitionTime.value}ms ease`
   }
 })
@@ -30,7 +32,7 @@ const getClasses = computed(() => {
       'vue-modal--active': show.value,
       'vue-modal--hide': hide.value
     },
-    `vue-modal--${stateOptions.modalStyle?.align}`,
+    `vue-modal--${props.item?.options?.modalStyle?.align ?? stateOptions.modalStyle?.align}`,
     `vue-modal--${stateOptions.animationType}`
   ]
 })
