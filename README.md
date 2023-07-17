@@ -109,11 +109,26 @@ Then you can use your modal.
 ```vue
 
 <script setup lang="ts">
+import {defineAsyncComponent} from 'vue'
 import {openModal} from '@kolirt/vue-modal'
 import TestModal from '@/components/modals/TestModal.vue'
 
 function runModal() {
   openModal(TestModal, {
+    test: 'some props'
+  })
+      // runs when modal is closed via confirmModal
+      .then((data) => {
+        console.log('success', data)
+      })
+      // runs when modal is closed via closeModal or esc
+      .catch(() => {
+        console.log('catch')
+      })
+}
+
+function runDynamicModal() {
+  openModal(defineAsyncComponent(() => import('@/components/modals/TestModal.vue')), {
     test: 'some props'
   })
       // runs when modal is closed via confirmModal

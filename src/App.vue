@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import {notify} from '@kyvg/vue3-notification'
 import {ModalTarget, openModal} from '../lib'
-import TestModal from './components/Test1Modal.vue'
 import Test2Modal from './components/Test2Modal.vue'
 import Test3Modal from './components/Test3Modal.vue'
+import {defineAsyncComponent} from 'vue'
 
 function runModal1() {
-  openModal(TestModal, {
+  openModal(defineAsyncComponent(() => import('@/components/Test1Modal.vue')), {
     test: 'modal1'
   }, {
     modalStyle: {

@@ -1,5 +1,5 @@
 import type {Component} from 'vue'
-import type {/*Options,*/ CloseEventData, OpenModalOptions} from './types'
+import type {CloseEventData, OpenModalOptions} from './types'
 import {Events} from './types'
 import {addModal, state as stateData} from './data'
 import {$emit, $off, $on} from './event'
