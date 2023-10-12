@@ -4,7 +4,7 @@ export { useLock } from './composables/useLock'
 
 export { openModal, confirmModal, closeModal, closeAllModals } from './actions'
 
-export { isOpened } from './data'
+export { isOpened, modals } from './data'
 
 export { $on, $off } from './event'
 

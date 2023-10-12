@@ -14,12 +14,6 @@
   "importOrder": [
     "^./App.vue$",
     "<THIRD_PARTY_MODULES>",
-    "^@/01-app(.*)$",
-    "^@/02-pages(.*)$",
-    "^@/03-widgets(.*)$",
-    "^@/04-features(.*)$",
-    "^@/05-entities(.*)$",
-    "^@/06-shared(.*)$",
     "^@/(.*)$",
     "^[./]"
   ],

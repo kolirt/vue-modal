@@ -9,6 +9,7 @@ export const state = reactive<{
   modals: []
 })
 
+export const modals = computed(() => state.modals)
 export const isOpened = computed(() => state.modals.length > 0)
 
 export function addModal(component: Component, props?: {}, options?: OpenModalOptions) {
