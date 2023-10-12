@@ -1,0 +1,41 @@
+{
+  "bracketSpacing": true,
+  "trailingComma": "none",
+  "tabWidth": 2,
+  "printWidth": 120,
+  "semi": false,
+  "singleQuote": true,
+  "endOfLine": "auto",
+  "plugins": [
+    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-organize-attributes",
+    "prettier-plugin-tailwindcss"
+  ],
+  "importOrder": [
+    "^./App.vue$",
+    "<THIRD_PARTY_MODULES>",
+    "^@/01-app(.*)$",
+    "^@/02-pages(.*)$",
+    "^@/03-widgets(.*)$",
+    "^@/04-features(.*)$",
+    "^@/05-entities(.*)$",
+    "^@/06-shared(.*)$",
+    "^@/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "attributeGroups": [
+    "^ref",
+    "^v-if",
+    "^v-else",
+    "^v-show",
+    "^v-for",
+    "^:?is$",
+    "^@",
+    "^:",
+    "$DEFAULT",
+    "^aria-",
+    "^:?key$"
+  ]
+}

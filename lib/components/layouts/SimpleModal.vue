@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import {useSlots} from 'vue'
-import {closeModal} from '../../actions'
+import { useSlots } from 'vue'
+
+import { closeModal } from '../../actions'
 
 const slots = useSlots()
 const props = defineProps({
   title: {},
-  showClose: {type: Boolean, default: true},
+  showClose: { type: Boolean, default: true },
   size: {
     type: String,
     default: 'sm',
@@ -14,11 +15,10 @@ const props = defineProps({
     }
   }
 })
-
 </script>
 
 <template>
-  <div class="vue-modal-content" :class="`size-${props.size}`">
+  <div :class="`size-${props.size}`" class="vue-modal-content">
     <div v-if="props.title || props.showClose" class="vue-modal-header">
       <h1 v-if="props.title" class="vue-modal-title">{{ props.title }}</h1>
       <button v-if="props.showClose" @click="closeModal()" class="vue-modal-btn-close" aria-label="Close"></button>
@@ -87,7 +87,9 @@ const props = defineProps({
   opacity: 0.5;
   width: 2rem;
   height: 2rem;
-  background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+  background: transparent
+    url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e")
+    center/1em auto no-repeat;
   border: none;
   padding: 0;
   cursor: pointer;

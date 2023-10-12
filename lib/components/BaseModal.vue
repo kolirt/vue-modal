@@ -1,29 +1,30 @@
 <script setup lang="ts">
-import type {ModalItem} from '../types'
-import {computed, onBeforeUnmount, onMounted, PropType, ref} from 'vue'
+import { PropType, computed, onBeforeUnmount, onMounted, ref } from 'vue'
+
+import { closeModal } from '../actions'
+import { state as stateData } from '../data'
+import { $emit, $off, $on } from '../event'
+import { state as stateOptions } from '../options'
+import type { ModalItem } from '../types'
+import { Events } from '../types'
 import isEsc from '../utils/isEsc'
-import {closeModal} from '../actions'
-import {state as stateData} from '../data'
-import {$emit, $off, $on} from '../event'
-import {state as stateOptions} from '../options'
-import {Events} from '../types'
 
 const props = defineProps({
-  index: {type: Number, required: true},
-  item: {type: Object as PropType<ModalItem>}
+  index: { type: Number, required: true },
+  item: { type: Object as PropType<ModalItem> }
 })
 
 const show = ref(false)
 const hide = computed(() => props.index !== stateData.modals.length - 1)
 
 const transitionTime = computed(() => {
-  return stateOptions.animationType !== 'none' ? (stateOptions.transitionTime || 0) : 0
+  return stateOptions.animationType !== 'none' ? stateOptions.transitionTime || 0 : 0
 })
 const getStyle = computed(() => {
   return {
-    'padding': props.item?.options?.modalStyle?.padding ?? stateOptions.modalStyle?.padding,
+    padding: props.item?.options?.modalStyle?.padding ?? stateOptions.modalStyle?.padding,
     'z-index': props.item?.options?.modalStyle?.['z-index'] ?? stateOptions.modalStyle?.['z-index'],
-    'transition': `opacity ${transitionTime.value}ms ease, visibility ${transitionTime.value}ms ease, transform ${transitionTime.value}ms ease`
+    transition: `opacity ${transitionTime.value}ms ease, visibility ${transitionTime.value}ms ease, transform ${transitionTime.value}ms ease`
   }
 })
 const getClasses = computed(() => {
@@ -55,9 +56,12 @@ function onEsc(e: Event) {
 }
 
 onMounted(() => {
-  setTimeout(() => {
-    show.value = true
-  }, props.index > 0 ? transitionTime.value : 0)
+  setTimeout(
+    () => {
+      show.value = true
+    },
+    props.index > 0 ? transitionTime.value : 0
+  )
   $on(Events.Close, onClose)
   document.addEventListener('keydown', onEsc)
   $emit(Events.Opened)
@@ -70,7 +74,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="vue-modal" :class="getClasses" :style="getStyle">
+  <div :class="getClasses" :style="getStyle" class="vue-modal">
     <slot></slot>
   </div>
 </template>

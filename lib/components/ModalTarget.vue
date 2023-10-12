@@ -1,26 +1,27 @@
 <script setup lang="ts">
-import type {CloseEventData} from '../types'
-import {computed, onBeforeUnmount, onMounted, ref} from 'vue'
-import {state as stateOptions} from '../options'
-import {state as stateData} from '../data'
-import {$off, $on} from '../event'
-import {Events} from '../types'
-import BaseModal from './BaseModal.vue'
-import {useLock} from '../composables/useLock'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 
-const transitionTime = stateOptions.animationType !== 'none' ? (stateOptions.transitionTime || 0) : 0
+import { useLock } from '../composables/useLock'
+import { state as stateData } from '../data'
+import { $off, $on } from '../event'
+import { state as stateOptions } from '../options'
+import type { CloseEventData } from '../types'
+import { Events } from '../types'
+import BaseModal from './BaseModal.vue'
+
+const transitionTime = stateOptions.animationType !== 'none' ? stateOptions.transitionTime || 0 : 0
 const overlayStyle = computed(() => {
   return {
     ...stateOptions?.overlayStyle,
-    'transition': `opacity ${transitionTime}ms ease, visibility ${transitionTime}ms ease`
+    transition: `opacity ${transitionTime}ms ease, visibility ${transitionTime}ms ease`
   }
 })
 
 const hide = ref(false)
 const activeOverlay = computed(() => stateData.modals.length && !hide.value)
 
-function onClose({forceCloseAll}: CloseEventData) {
-  if (stateData.modals.length === 1 && forceCloseAll !== false || forceCloseAll) {
+function onClose({ forceCloseAll }: CloseEventData) {
+  if ((stateData.modals.length === 1 && forceCloseAll !== false) || forceCloseAll) {
     hide.value = true
     setTimeout(() => {
       hide.value = false
@@ -54,10 +55,10 @@ onBeforeUnmount(() => {
 <template>
   <div class="vue-modals">
     <BaseModal v-for="(item, index) in stateData.modals" :index="index" :item="item" :key="index">
-      <component :is="item.component" v-bind="item.props"/>
+      <component :is="item.component" v-bind="item.props" />
     </BaseModal>
 
-    <div class="vue-modals-overlay" :style="overlayStyle" :class="{'active': activeOverlay}"></div>
+    <div :style="overlayStyle" :class="{ active: activeOverlay }" class="vue-modals-overlay"></div>
   </div>
 </template>
 
