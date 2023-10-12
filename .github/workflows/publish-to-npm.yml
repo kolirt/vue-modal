@@ -1,9 +1,8 @@
 name: 🚀 publish to npm
 
 on:
-  push:
-    branches:
-      - master
+  release:
+    types: [ published ]
 
 jobs:
   release:
@@ -13,35 +12,20 @@ jobs:
     steps:
       - name: 📚 Checkout
         uses: actions/checkout@v3
-      - uses: johnnybenson/package-json-versioned-action@v1.0.5
-        id: package-json
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Create tag
-        if: steps.package-json.outputs.has-updated == 'true'
-        uses: negz/create-tag@v1
-        with:
-          version: ${{ steps.package-json.outputs.version }}
-          message: ${{ steps.package-json.outputs.version }}
-          token: ${{ secrets.GITHUB_TOKEN }}
       - name: 🟢 Node
-        if: steps.package-json.outputs.has-updated == 'true'
         uses: actions/setup-node@v3
         with:
           node-version: 16
           registry-url: 'https://registry.npmjs.org'
       - name: 🕵 Yarn install
-        if: steps.package-json.outputs.has-updated == 'true'
         uses: borales/actions-yarn@v4
         with:
           cmd: install
       - name: 🏗 Build
-        if: steps.package-json.outputs.has-updated == 'true'
         uses: borales/actions-yarn@v4
         with:
           cmd: build-lib
       - name: 🚀 Publish
-        if: steps.package-json.outputs.has-updated == 'true'
         run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
