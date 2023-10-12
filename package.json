@@ -7,7 +7,13 @@
   "keywords": [
     "vue",
     "vue3",
-    "vuejs"
+    "vuejs",
+    "dialog",
+    "alert",
+    "modal",
+    "vue-js-modal",
+    "vue-modal",
+    "popup"
   ],
   "scripts": {
     "build-lib": "run-p type-check-lib build-only-lib",
