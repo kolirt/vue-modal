@@ -2,34 +2,52 @@
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 
 import { useLock } from '../composables/useLock'
-import { state as stateData } from '../data'
+import { lastModal, state as stateData } from '../data'
 import { $off, $on } from '../event'
 import { state as stateOptions } from '../options'
-import type { CloseEventData } from '../types'
+import type { CloseEventData, OpenModalOptions } from '../types'
 import { Events } from '../types'
 import BaseModal from './BaseModal.vue'
+
+const props = withDefaults(
+  defineProps<{
+    group?: OpenModalOptions['group']
+    withoutOverlay?: boolean
+  }>(),
+  {
+    group: 'default',
+    withoutOverlay: false
+  }
+)
+
+const lock = useLock()
 
 const transitionTime = stateOptions.animationType !== 'none' ? stateOptions.transitionTime || 0 : 0
 const overlayStyle = computed(() => {
   return {
-    ...stateOptions?.overlayStyle,
+    ...(stateOptions?.overlayStyle || {}),
     transition: `opacity ${transitionTime}ms ease, visibility ${transitionTime}ms ease`
   }
 })
 
 const hide = ref(false)
-const activeOverlay = computed(() => stateData.modals.length && !hide.value)
+
+const currentModals = computed(() => {
+  return stateData.modals.filter((item) => item.options.group === props.group)
+})
+
+const activeOverlay = computed(() => {
+  return currentModals.value.length && !hide.value && lastModal.value.options.group === props.group
+})
 
 function onClose({ forceCloseAll }: CloseEventData) {
-  if ((stateData.modals.length === 1 && forceCloseAll !== false) || forceCloseAll) {
+  if ((currentModals.value.length === 1 && forceCloseAll !== false) || forceCloseAll) {
     hide.value = true
     setTimeout(() => {
       hide.value = false
     }, transitionTime)
   }
 }
-
-const lock = useLock()
 
 function onClosed() {
   lock.toggleLock(false)
@@ -53,12 +71,17 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="vue-modals">
-    <BaseModal v-for="(item, index) in stateData.modals" :index="index" :item="item" :key="index">
+  <div :class="[`vue-modals-${props.group}-group`]" class="vue-modals">
+    <BaseModal v-for="item in currentModals" :item="item" :key="`${props.group}-${item.id}`">
       <component :is="item.component" v-bind="item.props" />
     </BaseModal>
 
-    <div :style="overlayStyle" :class="{ active: activeOverlay }" class="vue-modals-overlay"></div>
+    <div
+      v-if="!withoutOverlay"
+      :style="overlayStyle"
+      :class="{ active: activeOverlay }"
+      class="vue-modals-overlay"
+    ></div>
   </div>
 </template>
 

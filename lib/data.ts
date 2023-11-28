@@ -1,7 +1,6 @@
-import type { Component } from 'vue'
 import { computed, markRaw, reactive } from 'vue'
 
-import type { ModalItem, OpenModalOptions } from './types'
+import type { ModalItem } from './types'
 
 export const state = reactive<{
   modals: ModalItem[]
@@ -9,11 +8,14 @@ export const state = reactive<{
   modals: []
 })
 
+export const lastModal = computed(() => state.modals[state.modals.length - 1])
+
 export const modals = computed(() => state.modals)
 export const isOpened = computed(() => state.modals.length > 0)
 
-export function addModal(component: Component, props?: {}, options?: OpenModalOptions) {
-  state.modals.push(markRaw({ component, props, options }))
+export function addModal(data: ModalItem) {
+  data.options.group = data.options.group || 'default'
+  state.modals.push(markRaw(data))
 }
 
 export function removeModal() {

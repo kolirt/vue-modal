@@ -1,12 +1,13 @@
-<script setup lang="ts">
+<script setup>
+import { closeAllModals, closeModal, confirmModal, openModal } from '@kolirt/vue-modal'
 import { notify } from '@kyvg/vue3-notification'
+import { defineProps } from 'vue'
 
-import { closeAllModals, closeModal, confirmModal, openModal } from '../../lib'
 import Test3Modal from './Test3Modal.vue'
 
-const props = defineProps<{
-  test: string
-}>()
+const props = defineProps({
+  test: String
+})
 
 function runModal3(force = false) {
   openModal(

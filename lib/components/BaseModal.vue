@@ -1,21 +1,27 @@
 <script setup lang="ts">
-import { PropType, computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 
 import { closeModal } from '../actions'
-import { state as stateData } from '../data'
+import { lastModal } from '../data'
 import { $emit, $off, $on } from '../event'
 import { state as stateOptions } from '../options'
-import type { ModalItem } from '../types'
+import type { ClosedEventData, ModalItem, OpenModalOptions } from '../types'
 import { Events } from '../types'
 import isEsc from '../utils/isEsc'
 
-const props = defineProps({
-  index: { type: Number, required: true },
-  item: { type: Object as PropType<ModalItem> }
-})
+const props = withDefaults(
+  defineProps<{
+    group?: OpenModalOptions['group']
+    item: ModalItem
+  }>(),
+  {
+    group: 'default'
+  }
+)
 
 const show = ref(false)
-const hide = computed(() => props.index !== stateData.modals.length - 1)
+
+const hide = computed(() => props.item.id !== lastModal.value.id)
 
 const transitionTime = computed(() => {
   return stateOptions.animationType !== 'none' ? stateOptions.transitionTime || 0 : 0
@@ -39,18 +45,18 @@ const getClasses = computed(() => {
 })
 
 function onClose(data: any) {
-  if (stateData.modals.length - 1 === props.index) {
+  if (lastModal.value.id === props.item.id) {
     show.value = false
     setTimeout($emit, transitionTime.value, Events.Closed, {
-      index: props.index,
+      id: props.item.id,
       success: data.success,
       data: data.data
-    })
+    } as ClosedEventData)
   }
 }
 
 function onEsc(e: Event) {
-  if (isEsc(e) && stateData.modals.length - 1 === props.index) {
+  if (isEsc(e) && lastModal.value.id === props.item.id) {
     closeModal()
   }
 }
@@ -60,7 +66,7 @@ onMounted(() => {
     () => {
       show.value = true
     },
-    props.index > 0 ? transitionTime.value : 0
+    props.item.id > 0 ? transitionTime.value : 0
   )
   $on(Events.Close, onClose)
   document.addEventListener('keydown', onEsc)

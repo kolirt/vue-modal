@@ -26,8 +26,16 @@ export type Options = {
 }
 
 export type OpenModalOptions = {
+  group?: 'default' | string
   force?: boolean
   modalStyle?: ModalStyle
+}
+
+export interface ModalItem {
+  id: number
+  component: Component
+  props?: {}
+  options: OpenModalOptions
 }
 
 export type CloseEventData = {
@@ -36,8 +44,8 @@ export type CloseEventData = {
   data?: any
 }
 
-export interface ModalItem {
-  component: Component
-  props?: {} | []
-  options?: OpenModalOptions
+export type ClosedEventData = {
+  id: ModalItem['id']
+  success: false
+  data?: any
 }

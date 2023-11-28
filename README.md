@@ -14,6 +14,7 @@ Easy to use and highly customizable Vue3 modal package.
 - [Usage](#usage)
     - [Basic usage](#basic-usage)
     - [Advanced usage](#)
+- [Options](#options)
 - [Demo](#demo)
 - [Example](#example)
 - [Faq](#faq)
@@ -41,12 +42,12 @@ yarn add @kolirt/vue-modal
 Add dependencies to your `main.js`:
 
 ```javascript
-import {createApp} from 'vue'
-import {createModal} from '@kolirt/vue-modal'
+import { createApp } from 'vue'
+import { createModal } from '@kolirt/vue-modal'
 
-const app = createApp({...})
+const app = createApp ({ ... })
 
-app.use(createModal({
+app.use (createModal ({
   transitionTime: 200,
   animationType: 'slideDown',
   modalStyle: {
@@ -60,15 +61,14 @@ app.use(createModal({
   }
 }))
 
-app.mount('#app')
+app.mount ('#app')
 ```
 
 Add `ModalTarget` to `App.vue`
 
 ```vue
-
 <template>
-  <ModalTarget/>
+  <ModalTarget />
 </template>
 ```
 
@@ -80,23 +80,23 @@ First, you need to create modal. Instead of `SimpleModal`, you can implement you
 
 ```vue
 
-<script setup lang="ts">
-import {closeModal, confirmModal} from '@kolirt/vue-modal'
+<script setup lang='ts'>
+  import { closeModal, confirmModal } from '@kolirt/vue-modal'
 
-const props = defineProps({
-  test: {}
-})
+  const props = defineProps({
+    test: {}
+  })
 </script>
 
 <template>
-  <SimpleModal title="Test modal" size="sm">
+  <SimpleModal title='Test modal' size='sm'>
     <pre>props: {{ props }}</pre>
 
     <template #footer>
-      <button @click="confirmModal({value: 'some values'})" class="btn btn-primary">
+      <button @click="confirmModal({value: 'some values'})" class='btn btn-primary'>
         Confirm
       </button>
-      <button @click="closeModal()" class="btn btn-primary">
+      <button @click='closeModal()' class='btn btn-primary'>
         Close
       </button>
     </template>
@@ -108,15 +108,15 @@ Then you can use your modal.
 
 ```vue
 
-<script setup lang="ts">
-import {defineAsyncComponent} from 'vue'
-import {openModal} from '@kolirt/vue-modal'
-import TestModal from '@/components/modals/TestModal.vue'
+<script setup lang='ts'>
+  import { defineAsyncComponent } from 'vue'
+  import { openModal } from '@kolirt/vue-modal'
+  import TestModal from '@/components/modals/TestModal.vue'
 
-function runModal() {
-  openModal(TestModal, {
-    test: 'some props'
-  })
+  function runModal() {
+    openModal(TestModal, {
+      test: 'some props'
+    })
       // runs when modal is closed via confirmModal
       .then((data) => {
         console.log('success', data)
@@ -125,12 +125,12 @@ function runModal() {
       .catch(() => {
         console.log('catch')
       })
-}
+  }
 
-function runDynamicModal() {
-  openModal(defineAsyncComponent(() => import('@/components/modals/TestModal.vue')), {
-    test: 'some props'
-  })
+  function runDynamicModal() {
+    openModal(defineAsyncComponent(() => import('@/components/modals/TestModal.vue')), {
+      test: 'some props'
+    })
       // runs when modal is closed via confirmModal
       .then((data) => {
         console.log('success', data)
@@ -139,30 +139,93 @@ function runDynamicModal() {
       .catch(() => {
         console.log('catch')
       })
-}
+  }
 </script>
 
 <template>
-  <button @click="runModal">Open modal</button>
+  <button @click='runModal'>Open modal</button>
 </template>
 ```
 
 ## Advanced usage
+
 Open modal with clearing modal history.
 
 ```js
-openModal(TestModal, {
-    test: 'some props'
-}, {force: true})
-    // runs when modal is closed via confirmModal
-    .then((data) => {
-        console.log('success', data)
-    })
-    // runs when modal is closed via closeModal or esc
-    .catch(() => {
-        console.log('catch')
-    })
+openModal (TestModal, {
+  test: 'some props'
+}, { force: true })
+  // runs when modal is closed via confirmModal
+  .then ((data) => {
+    console.log ('success', data)
+  })
+  // runs when modal is closed via closeModal or esc
+  .catch (() => {
+    console.log ('catch')
+  })
 ```
+
+# Options
+
+## Component `ModalTarget` props
+
+<table>
+<thead>
+  <tr>
+    <th>Prop name</th>
+    <th>Type</th>
+    <th>Default value</th>
+    <th>Description</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>group</td>
+    <td>string</td>
+    <td>'default'</td>
+    <td>Name of the modals holder</td>
+  </tr>
+  <tr>
+    <td>withoutOverlay</td>
+    <td>boolean</td>
+    <td>false</td>
+    <td>Disable overlay</td>
+  </tr>
+</tbody>
+</table>
+
+## Function `openModal` args
+
+<table>
+<thead>
+  <tr>
+    <th>Arg number</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>1</td>
+    <td>Component</td>
+    <td>vue component</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>object</td>
+    <td>props for component</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>
+      <a href='https://github.com/kolirt/vue-modal/blob/master/lib/types.ts#L28'>
+        OpenModalOptions
+      </a>
+    </td>
+    <td>options</td>
+  </tr>
+</tbody>
+</table>
 
 # Demo
 
@@ -170,11 +233,12 @@ openModal(TestModal, {
 
 # Example
 
-[Example here](https://github.com/kolirt/vue-modal/blob/master/src).
+[Example here](https://github.com/kolirt/vue-modal/tree/master/examples).
 
 # FAQ
 
-Check closed [issues](https://github.com/kolirt/vue-modal/issues) with `FAQ` label to get answers for most asked questions.
+Check closed [issues](https://github.com/kolirt/vue-modal/issues) with `FAQ` label to get answers for most asked
+questions.
 
 # License
 

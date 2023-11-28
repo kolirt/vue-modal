@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import { ModalTarget, openModal } from '@kolirt/vue-modal'
 import { notify } from '@kyvg/vue3-notification'
 import { defineAsyncComponent } from 'vue'
 
-import { ModalTarget, openModal } from '../lib'
 import Test2Modal from './components/Test2Modal.vue'
 import Test3Modal from './components/Test3Modal.vue'
 

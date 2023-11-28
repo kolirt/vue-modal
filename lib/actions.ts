@@ -1,22 +1,29 @@
-import type { Component } from 'vue'
-
 import { addModal, state as stateData } from './data'
 import { $emit, $off, $on } from './event'
-import type { CloseEventData, OpenModalOptions } from './types'
+import type { CloseEventData, ClosedEventData, ModalItem, OpenModalOptions } from './types'
 import { Events } from './types'
 
-export async function openModal<T = unknown>(component: Component, props?: {}, options?: OpenModalOptions) {
+export async function openModal<T = unknown>(
+  component: ModalItem['component'],
+  props?: ModalItem['props'],
+  options?: OpenModalOptions
+) {
   if (options?.force && stateData.modals.length) {
     await closeAllModals(false)
   }
 
-  const index = stateData.modals.length
-  addModal(component, props, options)
+  const currentId = stateData.modals.length
+  addModal({
+    id: currentId,
+    component,
+    props,
+    options: options || {}
+  })
   $emit(Events.Open)
 
   return new Promise<T>((resolve, reject) => {
-    function onClosed(data: any) {
-      if (data.index === index) {
+    function onClosed(data: ClosedEventData) {
+      if (data.id === currentId) {
         $off(Events.Closed, onClosed)
         data.success ? resolve(data.data) : reject('Modal closed.')
       }
@@ -58,9 +65,9 @@ export function closeAllModals(forceCloseAll = true): Promise<void> {
       for (let i = stateData.modals.length - 1; i >= 0; i--) {
         stateData.modals.splice(i, 1)
         $emit(Events.Closed, {
-          index: i,
+          id: i,
           success: false
-        })
+        } as ClosedEventData)
       }
 
       resolve()
