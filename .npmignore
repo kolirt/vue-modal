@@ -10,3 +10,4 @@ tsconfig*
 yarn.lock
 vite.*
 .env
+examples
