@@ -1136,10 +1136,10 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@kolirt/vue-modal@^0.0.14":
-  version "0.0.14"
-  resolved "https://registry.yarnpkg.com/@kolirt/vue-modal/-/vue-modal-0.0.14.tgz#438ce59722ba8b96fe93a392ccfe1d912c905f0b"
-  integrity sha512-sNybeM7nnAzMdNZT5FokuJDMLSEv7cqcB5NWoLS4D4nSmSfNUQNzCXANuO+BRrU//JptOQ6LX4xgZR+Jr7kARg==
+"@kolirt/vue-modal@^0.0.15":
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/@kolirt/vue-modal/-/vue-modal-0.0.15.tgz#61f0504a405c8294835e5f4fd44f86498ff61dd5"
+  integrity sha512-HlcRRryOJUC4uNnSU6AWSRbT532JYWxUZJh8gXjvhMAEuwgfeWyLfuzcdQnKOEt8VGw0j++Euo5bfAoVkGDEkg==
   dependencies:
     "@kyvg/vue3-notification" "^2.9.1"
     bootstrap "5.3.0"
