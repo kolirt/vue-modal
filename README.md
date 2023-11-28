@@ -9,11 +9,11 @@ Easy to use and highly customizable Vue3 modal package.
 **Table of Contents**
 
 - [Getting started](#getting-started)
-    - [Installation](#installation)
-    - [Setup](#setup)
+  - [Installation](#installation)
+  - [Setup](#setup)
 - [Usage](#usage)
-    - [Basic usage](#basic-usage)
-    - [Advanced usage](#)
+  - [Basic usage](#basic-usage)
+  - [Advanced usage](#)
 - [Options](#options)
 - [Demo](#demo)
 - [Example](#example)
@@ -45,9 +45,9 @@ Add dependencies to your `main.js`:
 import { createApp } from 'vue'
 import { createModal } from '@kolirt/vue-modal'
 
-const app = createApp ({ ... })
+const app = createApp({ ... })
 
-app.use (createModal ({
+app.use(createModal({
   transitionTime: 200,
   animationType: 'slideDown',
   modalStyle: {
@@ -61,7 +61,7 @@ app.use (createModal ({
   }
 }))
 
-app.mount ('#app')
+app.mount('#app')
 ```
 
 Add `ModalTarget` to `App.vue`
@@ -79,26 +79,21 @@ Add `ModalTarget` to `App.vue`
 First, you need to create modal. Instead of `SimpleModal`, you can implement your own wrapper with your own styles.
 
 ```vue
+<script setup lang="ts">
+import { closeModal, confirmModal } from '@kolirt/vue-modal'
 
-<script setup lang='ts'>
-  import { closeModal, confirmModal } from '@kolirt/vue-modal'
-
-  const props = defineProps({
-    test: {}
-  })
+const props = defineProps({
+  test: {}
+})
 </script>
 
 <template>
-  <SimpleModal title='Test modal' size='sm'>
+  <SimpleModal title="Test modal" size="sm">
     <pre>props: {{ props }}</pre>
 
     <template #footer>
-      <button @click="confirmModal({value: 'some values'})" class='btn btn-primary'>
-        Confirm
-      </button>
-      <button @click='closeModal()' class='btn btn-primary'>
-        Close
-      </button>
+      <button @click="confirmModal({ value: 'some values' })" class="btn btn-primary">Confirm</button>
+      <button @click="closeModal()" class="btn btn-primary">Close</button>
     </template>
   </SimpleModal>
 </template>
@@ -107,43 +102,46 @@ First, you need to create modal. Instead of `SimpleModal`, you can implement you
 Then you can use your modal.
 
 ```vue
+<script setup lang="ts">
+import { openModal } from '@kolirt/vue-modal'
+import { defineAsyncComponent } from 'vue'
 
-<script setup lang='ts'>
-  import { defineAsyncComponent } from 'vue'
-  import { openModal } from '@kolirt/vue-modal'
-  import TestModal from '@/components/modals/TestModal.vue'
+import TestModal from '@/components/modals/TestModal.vue'
 
-  function runModal() {
-    openModal(TestModal, {
-      test: 'some props'
+function runModal() {
+  openModal(TestModal, {
+    test: 'some props'
+  })
+    // runs when modal is closed via confirmModal
+    .then((data) => {
+      console.log('success', data)
     })
-      // runs when modal is closed via confirmModal
-      .then((data) => {
-        console.log('success', data)
-      })
-      // runs when modal is closed via closeModal or esc
-      .catch(() => {
-        console.log('catch')
-      })
-  }
-
-  function runDynamicModal() {
-    openModal(defineAsyncComponent(() => import('@/components/modals/TestModal.vue')), {
-      test: 'some props'
+    // runs when modal is closed via closeModal or esc
+    .catch(() => {
+      console.log('catch')
     })
-      // runs when modal is closed via confirmModal
-      .then((data) => {
-        console.log('success', data)
-      })
-      // runs when modal is closed via closeModal or esc
-      .catch(() => {
-        console.log('catch')
-      })
-  }
+}
+
+function runDynamicModal() {
+  openModal(
+    defineAsyncComponent(() => import('@/components/modals/TestModal.vue')),
+    {
+      test: 'some props'
+    }
+  )
+    // runs when modal is closed via confirmModal
+    .then((data) => {
+      console.log('success', data)
+    })
+    // runs when modal is closed via closeModal or esc
+    .catch(() => {
+      console.log('catch')
+    })
+}
 </script>
 
 <template>
-  <button @click='runModal'>Open modal</button>
+  <button @click="runModal">Open modal</button>
 </template>
 ```
 
@@ -152,16 +150,20 @@ Then you can use your modal.
 Open modal with clearing modal history.
 
 ```js
-openModal (TestModal, {
-  test: 'some props'
-}, { force: true })
+openModal(
+  TestModal,
+  {
+    test: 'some props'
+  },
+  { force: true }
+)
   // runs when modal is closed via confirmModal
-  .then ((data) => {
-    console.log ('success', data)
+  .then((data) => {
+    console.log('success', data)
   })
   // runs when modal is closed via closeModal or esc
-  .catch (() => {
-    console.log ('catch')
+  .catch(() => {
+    console.log('catch')
   })
 ```
 
