@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { closeAllModals, closeModal, confirmModal } from '../../lib'
+import SimpleModal from '../../lib/components/layouts/SimpleModal.vue'
 
 const props = defineProps({
-  test: {}
+  test: {
+    type: String,
+    required: true
+  }
 })
 </script>
 

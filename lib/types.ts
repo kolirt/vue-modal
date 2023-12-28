@@ -34,18 +34,30 @@ export type OpenModalOptions = {
 export interface ModalItem {
   id: number
   component: Component
-  props?: {}
+  props?: { [key: string]: any }
   options: OpenModalOptions
 }
 
-export type CloseEventData = {
-  success: boolean
+export type CloseEventData<T = any> = {
   forceCloseAll?: boolean
-  data?: any
-}
+} & (
+  | {
+      success: true
+      data: T
+    }
+  | {
+      success: false
+    }
+)
 
-export type ClosedEventData = {
+export type ClosedEventData<T = any> = {
   id: ModalItem['id']
-  success: false
-  data?: any
-}
+} & (
+  | {
+      success: true
+      data: T
+    }
+  | {
+      success: false
+    }
+)

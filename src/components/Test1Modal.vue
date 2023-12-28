@@ -4,9 +4,9 @@ import { notify } from '@kyvg/vue3-notification'
 import { closeModal, confirmModal, openModal } from '../../lib'
 import Test2Modal from './Test2Modal.vue'
 
-const props = defineProps({
-  test: {}
-})
+const props = defineProps<{
+  test: string
+}>()
 
 function runModal2(force = false) {
   openModal(

@@ -1,11 +1,17 @@
+import type { AllowedComponentProps, Component, VNodeProps } from 'vue'
+
 import { addModal, state as stateData } from './data'
 import { $emit, $off, $on } from './event'
-import type { CloseEventData, ClosedEventData, ModalItem, OpenModalOptions } from './types'
+import type { CloseEventData, ClosedEventData, OpenModalOptions } from './types'
 import { Events } from './types'
 
-export async function openModal<T = unknown>(
-  component: ModalItem['component'],
-  props?: ModalItem['props'],
+export type ExtractComponentProps<TComponent> = TComponent extends new () => { $props: infer P }
+  ? Omit<P, keyof VNodeProps | keyof AllowedComponentProps | keyof Array<any>>
+  : never
+
+export async function openModal<T = unknown, C extends Component = Component>(
+  component: C,
+  props: ExtractComponentProps<C> extends Record<string, never> ? {} : ExtractComponentProps<C>,
   options?: OpenModalOptions
 ) {
   if (options?.force && stateData.modals.length) {
@@ -33,7 +39,7 @@ export async function openModal<T = unknown>(
   })
 }
 
-export function confirmModal(data?: any): Promise<any> {
+export function confirmModal<T>(data?: T): Promise<T> {
   return new Promise((resolve) => {
     function onClosed(data: any) {
       $off(Events.Closed, onClosed)
@@ -41,7 +47,7 @@ export function confirmModal(data?: any): Promise<any> {
     }
 
     $on(Events.Closed, onClosed)
-    $emit(Events.Close, { success: true, data } as CloseEventData)
+    $emit(Events.Close, { success: true, data } as CloseEventData<T>)
   })
 }
 

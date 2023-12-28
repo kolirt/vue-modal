@@ -8,9 +8,13 @@
     "strict": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
+    "verbatimModuleSyntax": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "exclude": ["test", "demo", "node_modules", "examples"]
 }

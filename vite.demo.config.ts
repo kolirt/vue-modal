@@ -11,7 +11,6 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            // @ts-ignore
             '@': fileURLToPath(new URL('./src', import.meta.url)),
             'lib': fileURLToPath(new URL('./lib', import.meta.url)),
         }
