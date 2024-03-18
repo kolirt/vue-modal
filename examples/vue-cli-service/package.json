@@ -23,7 +23,7 @@
     "@vue/cli-service": "~5.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
-    "prettier": "3.0.3",
+    "prettier": "^3.2.5",
     "prettier-plugin-organize-imports": "^3.2.4"
   },
   "eslintConfig": {
