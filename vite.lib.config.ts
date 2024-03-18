@@ -4,6 +4,7 @@ import { defineConfig } from 'vite'
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 import dts from 'vite-plugin-dts'
 import eslint from 'vite-plugin-eslint'
+import pkg from './package.json'
 
 export default defineConfig({
   plugins: [
@@ -24,11 +25,16 @@ export default defineConfig({
     },
     emptyOutDir: true,
     rollupOptions: {
-      external: ['vue', 'js-event-bus'],
+      external: [...Object.keys(pkg.dependencies)],
       output: {
         globals: {
-          vue: 'vue',
-          'js-event-bus': 'jsEventBus'
+          ...(() => {
+            const obj: Record<string, string> = {}
+            Object.keys(pkg.dependencies).forEach((key) => {
+              obj[key] = key
+            })
+            return obj
+          })()
         }
       }
     }
