@@ -1,8 +1,10 @@
 {
   "name": "@kolirt/vue-modal",
   "version": "1.0.0",
+  "type": "module",
   "description": "Simple Vue3 modal package",
   "author": "kolirt",
+  "private": false,
   "license": "MIT",
   "keywords": [
     "vue",
@@ -23,14 +25,12 @@
     "build-demo": "vite build -c vite.demo.config.ts",
     "preview-demo": "vite preview -c vite.demo.config.ts",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore --ignore-path .eslintignore",
-    "format": "prettier --write src/ --write lib/ --write examples/vue-cli-service/src/ --write examples/vite/src/"
+    "format": "prettier --write \"**/*.{ts,js,cjs,vue,json}\""
   },
   "pre-commit": [
     "lint",
     "type-check-lib"
   ],
-  "private": false,
-  "type": "module",
   "files": [
     "dist"
   ],
@@ -42,7 +42,8 @@
       "types": "./dist/vue-modal.d.ts",
       "import": "./dist/vue-modal.js",
       "require": "./dist/vue-modal.umd.cjs"
-    }
+    },
+    "./package.json": "./package.json"
   },
   "repository": {
     "type": "git",
@@ -63,7 +64,6 @@
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.2.0",
-    "@trivago/prettier-plugin-sort-imports": "^4.2.0",
     "@tsconfig/node18": "^2.0.1",
     "@types/node": "^18.16.8",
     "@vitejs/plugin-vue": "^4.2.3",
@@ -76,7 +76,7 @@
     "pre-commit": "^1.2.2",
     "prettier": "^3.0.2",
     "prettier-plugin-organize-attributes": "^1.0.0",
-    "prettier-plugin-tailwindcss": "^0.5.3",
+    "prettier-plugin-organize-imports": "^3.2.4",
     "sass": "^1.63.6",
     "typescript": "~5.0.4",
     "vite": "^4.3.5",

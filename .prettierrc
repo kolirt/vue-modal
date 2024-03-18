@@ -7,18 +7,9 @@
   "singleQuote": true,
   "endOfLine": "auto",
   "plugins": [
-    "@trivago/prettier-plugin-sort-imports",
-    "prettier-plugin-organize-attributes",
-    "prettier-plugin-tailwindcss"
+    "prettier-plugin-organize-imports",
+    "prettier-plugin-organize-attributes"
   ],
-  "importOrder": [
-    "^./App.vue$",
-    "<THIRD_PARTY_MODULES>",
-    "^@/(.*)$",
-    "^[./]"
-  ],
-  "importOrderSeparation": true,
-  "importOrderSortSpecifiers": true,
   "attributeGroups": [
     "^ref",
     "^v-if",
