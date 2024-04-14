@@ -1,63 +1,70 @@
-import type { Component } from 'vue'
+import type { Component } from "vue";
 
 export enum Events {
-  Open = 'open',
-  Opened = 'opened',
-  Close = 'close',
-  Closed = 'closed'
+	Open = "open",
+	Opened = "opened",
+	Close = "close",
+	Closed = "closed",
 }
 
-export type AnimationType = 'slideDown' | 'slideUp' | 'slideLeft' | 'slideRight' | 'fade' | 'none'
+export type AnimationType =
+	| "slideDown"
+	| "slideUp"
+	| "slideLeft"
+	| "slideRight"
+	| "fade"
+	| "none";
 export type ModalStyle = {
-  padding?: string
-  align?: 'top' | 'center'
-  'z-index'?: number
-}
+	padding?: string;
+	align?: "top" | "center";
+	"z-index"?: number;
+};
 export type OverlayStyle = {
-  'background-color'?: string
-  'z-index'?: number
-}
+	"background-color"?: string;
+	"backdrop-filter"?: string;
+	"z-index"?: number;
+};
 
 export type Options = {
-  transitionTime?: number
-  animationType?: AnimationType
-  modalStyle?: ModalStyle
-  overlayStyle?: OverlayStyle
-}
+	transitionTime?: number;
+	animationType?: AnimationType;
+	modalStyle?: ModalStyle;
+	overlayStyle?: OverlayStyle;
+};
 
 export type OpenModalOptions = {
-  group?: 'default' | string
-  force?: boolean
-  modalStyle?: ModalStyle
-}
+	group?: "default" | string;
+	force?: boolean;
+	modalStyle?: ModalStyle;
+};
 
 export interface ModalItem {
-  id: number
-  component: Component
-  props?: { [key: string]: any }
-  options: OpenModalOptions
+	id: number;
+	component: Component;
+	props?: { [key: string]: any };
+	options: OpenModalOptions;
 }
 
 export type CloseEventData<T = any> = {
-  forceCloseAll?: boolean
+	forceCloseAll?: boolean;
 } & (
-  | {
-      success: true
-      data: T
-    }
-  | {
-      success: false
-    }
-)
+	| {
+			success: true;
+			data: T;
+	  }
+	| {
+			success: false;
+	  }
+);
 
 export type ClosedEventData<T = any> = {
-  id: ModalItem['id']
+	id: ModalItem["id"];
 } & (
-  | {
-      success: true
-      data: T
-    }
-  | {
-      success: false
-    }
-)
+	| {
+			success: true;
+			data: T;
+	  }
+	| {
+			success: false;
+	  }
+);
