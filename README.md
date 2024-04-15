@@ -57,6 +57,7 @@ app.use(createModal({
   },
   overlayStyle: {
     'background-color': 'rgba(0, 0, 0, .5)',
+    'backdrop-filter': 'blur(5px)',
     'z-index': 200
   }
 }))

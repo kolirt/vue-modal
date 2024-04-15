@@ -15,6 +15,7 @@ export type ModalStyle = {
 }
 export type OverlayStyle = {
   'background-color'?: string
+  'backdrop-filter'?: string
   'z-index'?: number
 }
 

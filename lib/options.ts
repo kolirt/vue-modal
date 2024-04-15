@@ -12,6 +12,7 @@ export const state = reactive<Options>({
   },
   overlayStyle: {
     'background-color': 'rgba(0, 0, 0, 0.9)',
+    'backdrop-filter': 'blur(5px)',
     'z-index': 200
   }
 })
@@ -50,5 +51,9 @@ export function setOptions(newOptions: Options): void {
   if (newOptions?.overlayStyle?.['background-color']) {
     // @ts-ignore
     state.overlayStyle['background-color'] = newOptions.overlayStyle['background-color']
+  }
+  if (newOptions?.overlayStyle?.['backdrop-filter']) {
+    // @ts-ignore
+    state.overlayStyle['backdrop-filter'] = newOptions.overlayStyle['backdrop-filter']
   }
 }
