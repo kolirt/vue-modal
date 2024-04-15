@@ -28,4 +28,4 @@ coverage
 *.sln
 *.sw?
 
-#bun.lockb
+bun.lockb

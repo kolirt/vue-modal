@@ -10,7 +10,7 @@
     "format": "prettier --write \"**/*.{ts,js,cjs,vue,json}\""
   },
   "dependencies": {
-    "@kolirt/vue-modal": "^0.0.16",
+    "@kolirt/vue-modal": "1.0.1",
     "@kyvg/vue3-notification": "^3.0.2",
     "bootstrap": "^5.3.2",
     "vue": "^3.3.8"

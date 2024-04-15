@@ -122,10 +122,10 @@
   resolved "https://registry.yarnpkg.com/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.15.tgz#d7c6e6755c78567a951e04ab52ef0fd26de59f32"
   integrity sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==
 
-"@kolirt/vue-modal@^0.0.16":
-  version "0.0.16"
-  resolved "https://registry.yarnpkg.com/@kolirt/vue-modal/-/vue-modal-0.0.16.tgz#ec9b9729ab1a2ca38ec5a08ad6e6e7c9db9c7b68"
-  integrity sha512-RGP6/IRdOBdTitS6VisDhBd5+1xCW4k5K/WvdFb37K71YZ/zfHYCyzhAzfRQrNTRMUX6iXou35GcQU5IGY4HyQ==
+"@kolirt/vue-modal@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@kolirt/vue-modal/-/vue-modal-1.0.1.tgz#2c5de26a4a27f4422cacea15eb2c37597e42d0ca"
+  integrity sha512-2dvthM7xNurR2Zby2uhHH5hjj9JXZg10yvOvEVYLYEgI49papYJec6fyF02v6w40BWYbslZSShYf9Gyl+syopQ==
   dependencies:
     "@kyvg/vue3-notification" "^2.9.1"
     bootstrap "5.3.0"
