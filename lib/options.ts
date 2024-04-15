@@ -12,7 +12,6 @@ export const state = reactive<Options>({
   },
   overlayStyle: {
     'background-color': 'rgba(0, 0, 0, 0.9)',
-    'backdrop-filter': 'blur(5px)',
     'z-index': 200
   }
 })
