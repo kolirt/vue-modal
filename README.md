@@ -245,7 +245,7 @@ questions.
 
 # License
 
-[MIT](https://github.com/kolirt/vue-modal/blob/master/LICENSE)
+[MIT](./LICENSE)
 
 # Other packages
 
