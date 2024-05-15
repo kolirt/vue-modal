@@ -18,7 +18,7 @@ body:
     id: configuration
     attributes:
       label: Package configuration
-      description: Show how you configured the package. You can check how to configure the package [here](https://github.com/kolirt/vue-modal?tab=readme-ov-file#configuration).
+      description: Show how you configured the package. You can check how to configure the package [here](https://github.com/kolirt/vue-modal?tab=readme-ov-file#setup).
       placeholder: |
         createModal({
           transitionTime: 200,
