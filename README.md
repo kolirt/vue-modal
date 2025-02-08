@@ -9,11 +9,14 @@ Easy to use and highly customizable Vue3 modal package.
 **Table of Contents**
 
 - [Getting started](#getting-started)
+  - [Advantages of using this solution](#advantages-of-using-this-solution)
+    - [🔥 Key benefits](#-key-benefits)
+    - [🚀 How It Works](#-how-it-works)
   - [Installation](#installation)
   - [Setup](#setup)
 - [Usage](#usage)
   - [Basic usage](#basic-usage)
-  - [Advanced usage](#)
+  - [Advanced usage](#advanced-usage)
 - [Options](#options)
 - [Demo](#demo)
 - [Example](#example)
@@ -26,6 +29,27 @@ Easy to use and highly customizable Vue3 modal package.
 </a>
 
 # Getting started
+
+## Advantages of using this solution
+
+### 🔥 Key benefits:
+
+- **Less code and simpler modal management**  
+  No more importing dozens of modals on every page or manually inserting them into template sections.
+
+- **Easy control with JS/TS**  
+  Open and close modals dynamically using clean JavaScript or TypeScript without unnecessary boilerplate.
+
+- **Cascading modal support**  
+  Seamlessly open multiple modals one after another while preserving their state and context - hassle-free.
+
+### 🚀 How It Works:
+1. Use a simple API to dynamically open and close modals.
+2. Forget about adding tons of static modals in your HTML templates.
+3. Add flexibility to your UI, enabling cascading modal calls with ease.
+
+> **Note:** Suitable for both simple use cases and complex applications requiring deep modal interactions.
+
 
 ## Installation
 
