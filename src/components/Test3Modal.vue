@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { closeAllModals, closeModal, confirmModal } from '../../lib'
-import SimpleModal from '../../lib/components/layouts/SimpleModal.vue'
+import { closeAllModals, closeModal, confirmModal, SimpleModal } from '../../lib'
 
 const props = defineProps({
   test: {

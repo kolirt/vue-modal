@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { notify } from '@kyvg/vue3-notification'
 
-import { closeModal, confirmModal, openModal } from '../../lib'
+import { closeModal, confirmModal, openModal, SimpleModal } from '../../lib'
 import Test2Modal from './Test2Modal.vue'
 
 const props = defineProps<{
