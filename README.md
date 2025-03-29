@@ -68,6 +68,10 @@ app.mount('#app')
 Add `ModalTarget` to `App.vue`
 
 ```vue
+<script setup lang="ts">
+  import { ModalTarget } from '@kolirt/vue-modal'
+</script>
+
 <template>
   <ModalTarget />
 </template>
@@ -81,7 +85,7 @@ First, you need to create modal. Instead of `SimpleModal`, you can implement you
 
 ```vue
 <script setup lang="ts">
-import { closeModal, confirmModal } from '@kolirt/vue-modal'
+import { closeModal, confirmModal, SimpleModal } from '@kolirt/vue-modal'
 
 const props = defineProps({
   test: {}
