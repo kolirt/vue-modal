@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { closeModal, confirmModal, openModal } from '@kolirt/vue-modal'
+import { closeModal, confirmModal, openModal, SimpleModal } from '@kolirt/vue-modal'
 import { notify } from '@kyvg/vue3-notification'
 
 import Test2Modal from './Test2Modal.vue'

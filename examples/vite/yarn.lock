@@ -147,10 +147,10 @@
   resolved "https://registry.yarnpkg.com/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.5.0.tgz#3188bcb273a414b0d215fd22a58540b989b9409a"
   integrity sha512-gv3ZRaISU3fjPAgNsriBRqGWQL6quFx04YMPW/zD8XMLsU32mhCCbfbO6KZFLjvYpCZ8zyDEgqsgf+PwPaM7GQ==
 
-"@kolirt/vue-modal@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@kolirt/vue-modal/-/vue-modal-1.1.0.tgz#5b284e410da4453b85d1a0f7ed7764be73f35540"
-  integrity sha512-X73jMV/xo/CrAq/PXFulogsrPmhbUt227ibKm2ijWw4gLKNBFHktYPVTt1nxO/YeTNBsLhCeZLNnfTIfqn94ng==
+"@kolirt/vue-modal@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@kolirt/vue-modal/-/vue-modal-1.1.2.tgz#7139df7ad51f3dd1fd9423d7ee2ddb8cc8497aa9"
+  integrity sha512-L7ZOouLgghyth6SaK7jpApyv88VdgI4PM45zcJsHNnpo8qT/NVUNMBYMKcUmuyQgpAskvCT+fwBxEnvT4Q09kw==
   dependencies:
     js-event-bus "^1.1.1"
 

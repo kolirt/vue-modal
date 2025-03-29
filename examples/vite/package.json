@@ -5,12 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "format": "prettier --write \"**/*.{ts,js,cjs,vue,json}\""
   },
   "dependencies": {
-    "@kolirt/vue-modal": "^1.1.0",
+    "@kolirt/vue-modal": "^1.1.2",
     "@kyvg/vue3-notification": "^3.0.2",
     "bootstrap": "^5.3.2",
     "vue": "^3.3.8"

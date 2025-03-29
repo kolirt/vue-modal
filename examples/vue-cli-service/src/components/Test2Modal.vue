@@ -1,5 +1,5 @@
 <script setup>
-import { closeAllModals, closeModal, confirmModal, openModal } from '@kolirt/vue-modal'
+import { closeAllModals, closeModal, confirmModal, openModal, SimpleModal } from '@kolirt/vue-modal'
 import { notify } from '@kyvg/vue3-notification'
 import { defineProps } from 'vue'
 

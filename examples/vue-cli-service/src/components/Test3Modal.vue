@@ -1,5 +1,5 @@
 <script setup>
-import { closeAllModals, closeModal, confirmModal } from '@kolirt/vue-modal'
+import { closeAllModals, closeModal, confirmModal, SimpleModal } from '@kolirt/vue-modal'
 import { defineProps } from 'vue'
 
 const props = defineProps({
