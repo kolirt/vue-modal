@@ -5,7 +5,7 @@ import { closeModal } from '../../actions'
 
 const slots = useSlots()
 const props = defineProps({
-  title: {},
+  title: { type: String },
   showClose: { type: Boolean, default: true },
   size: {
     type: String,
