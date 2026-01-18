@@ -73,7 +73,7 @@ onBeforeUnmount(() => {
 <template>
   <div :class="[`vue-modals-${props.group}-group`]" class="vue-modals">
     <BaseModal v-for="item in currentModals" :item="item" :key="`${props.group}-${item.id}`">
-      <component :is="item.component" v-bind="item.props" />
+      <component :is="item.component" v-bind="item.props" :modal="item" />
     </BaseModal>
 
     <div
