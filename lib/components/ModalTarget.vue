@@ -73,7 +73,14 @@ onBeforeUnmount(() => {
 <template>
   <div :class="[`vue-modals-${props.group}-group`]" class="vue-modals">
     <BaseModal v-for="item in currentModals" :item="item" :key="`${props.group}-${item.id}`">
-      <component :is="item.component" v-bind="item.props" :modal="item" />
+      <template #default="{ show, hide }">
+        <component
+          :is="item.component"
+          :modal="item"
+          :data-state="hide || (!hide && !show) ? 'closed' : show ? 'open' : undefined"
+          v-bind="item.props"
+        />
+      </template>
     </BaseModal>
 
     <div

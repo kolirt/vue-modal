@@ -29,3 +29,5 @@ coverage
 *.sw?
 
 bun.lockb
+.yarn
+.yarnrc.yml

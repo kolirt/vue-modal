@@ -7,7 +7,7 @@ export enum Events {
   Closed = 'closed'
 }
 
-export type AnimationType = 'slideDown' | 'slideUp' | 'slideLeft' | 'slideRight' | 'fade' | 'none'
+export type AnimationType = 'slideDown' | 'slideUp' | 'slideLeft' | 'slideRight' | 'fade' | 'custom' | 'none'
 export type ModalStyle = {
   padding?: string
   align?: 'top' | 'center'

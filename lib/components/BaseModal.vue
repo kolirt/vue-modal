@@ -81,7 +81,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div :class="getClasses" :style="getStyle" class="vue-modal">
-    <slot></slot>
+    <slot :show="show" :hide="hide" />
   </div>
 </template>
 
