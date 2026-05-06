@@ -1,0 +1,8 @@
+dist/
+node_modules/
+*.tsbuildinfo
+*.log
+
+# Copied from repo root by CI before publish — never commit
+README.md
+LICENSE

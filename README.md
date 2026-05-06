@@ -1,280 +1,165 @@
-<h1 align="center">Simple Vue3 modal package</h1>
-
 <p align="center">
-  <img src="https://img.shields.io/static/v1?label=Made%20with&message=VueJS&color=limegreen&style=for-the-badge&logo=vue.js" />
+  <img src="https://raw.githubusercontent.com/kolirt/vue-modal/master/docs/public/logo.png" alt="@kolirt/vue-modal" width="160" />
 </p>
 
-Easy to use and highly customizable Vue3 modal package.
+<h1 align="center">@kolirt/vue-modal</h1>
 
-**Table of Contents**
+<p align="center">
+  Open modals from any function, stack them as needed, and style them however you want.<br />
+  No template boilerplate, no manual state — just call and <code>await</code>.
+</p>
 
-- [Getting started](#getting-started)
-  - [Advantages of using this solution](#advantages-of-using-this-solution)
-    - [🔥 Key benefits](#-key-benefits)
-    - [🚀 How It Works](#-how-it-works)
-  - [Installation](#installation)
-  - [Setup](#setup)
-- [Usage](#usage)
-  - [Basic usage](#basic-usage)
-  - [Advanced usage](#advanced-usage)
-- [Options](#options)
-- [Demo](#demo)
-- [Example](#example)
-- [Faq](#faq)
-- [License](#license)
-- [Other packages](#other-packages)
+<p align="center">
+  <a href="https://www.npmjs.com/package/@kolirt/vue-modal"><img src="https://img.shields.io/npm/v/@kolirt/vue-modal.svg?style=flat-square" alt="npm version" /></a>
+  <a href="https://www.npmjs.com/package/@kolirt/vue-modal"><img src="https://img.shields.io/npm/dm/@kolirt/vue-modal.svg?style=flat-square" alt="npm downloads" /></a>
+  <a href="https://github.com/kolirt/vue-modal/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/@kolirt/vue-modal.svg?style=flat-square" alt="license" /></a>
+  <img src="https://img.shields.io/static/v1?label=Made%20with&message=VueJS&color=limegreen&style=flat-square&logo=vue.js" alt="Vue 3" />
+</p>
 
-<a href="https://www.buymeacoffee.com/kolirt" target="_blank">
-  <img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" >
-</a>
+<p align="center">
+  <a href="https://kolirt.github.io/vue-modal/"><strong>📚 Documentation</strong></a> ·
+  <a href="https://kolirt.github.io/vue-modal/playground"><strong>🎮 Playground</strong></a> ·
+  <a href="https://kolirt.github.io/vue-modal/recipes/confirm-dialog"><strong>🍳 Recipes</strong></a>
+</p>
 
-# Getting started
+---
 
-## Advantages of using this solution
+## What you get
 
-### 🔥 Key benefits:
+`@kolirt/vue-modal` is a lightweight, headless modal package for Vue 3. It lets you open, stack, and control dialogs imperatively from any function — without registering modal components in templates or wiring open/close state by hand.
 
-- **Less code and simpler modal management**  
-  No more importing dozens of modals on every page or manually inserting them into template sections.
+- **Open from JS/TS** — trigger modals from any function and await the user's response. A single call returns a typed promise with full TypeScript inference for props and result.
+- **Less template boilerplate** — skip placing every modal in your templates and wiring open/close state by hand. Register one mount point and trigger any modal from code with a single call.
+- **Cascading modals** — open multiple modals one after another while preserving their state and context. Layer a confirmation on top of a form without losing the form's data.
+- **Highly customizable** — headless primitives with no imposed styles. Bring your own CSS, transitions, and animations — compose modals that fit any design system.
+- **Modal groups** — isolate flows with named groups — the main app stack, confirm dialogs, side panels — each rendering in its own mount point with its own queue.
+- **Async components** — open any Vue component, including async ones loaded on demand. Heavy modals stay out of your initial bundle and resolve through the same promise.
 
-- **Easy control with JS/TS**  
-  Open and close modals dynamically using clean JavaScript or TypeScript without unnecessary boilerplate.
-
-- **Cascading modal support**  
-  Seamlessly open multiple modals one after another while preserving their state and context - hassle-free.
-
-### 🚀 How It Works:
-1. Use a simple API to dynamically open and close modals.
-2. Forget about adding tons of static modals in your HTML templates.
-3. Add flexibility to your UI, enabling cascading modal calls with ease.
-
-> **Note:** Suitable for both simple use cases and complex applications requiring deep modal interactions.
-
-
-## Installation
-
-Use yarn or npm to install the package `@kolirt/vue-modal`.
+## Install
 
 ```bash
-npm install --save @kolirt/vue-modal
-
-yarn add @kolirt/vue-modal
+npm install @kolirt/vue-modal reka-ui
+# or
+yarn add @kolirt/vue-modal reka-ui
+# or
+pnpm add @kolirt/vue-modal reka-ui
 ```
 
-## Setup
+`reka-ui` is a peer dependency.
 
-Add dependencies to your `main.js`:
+## Quick start
 
-```javascript
+**1. Register groups and install the plugin** (`main.ts`):
+
+The package requires every modal to belong to a registered group. Without registered groups the package can't be used at all — there's no implicit `'default'`.
+
+```ts
 import { createApp } from 'vue'
-import { createModal } from '@kolirt/vue-modal'
+import { createModal, type DefineGroups } from '@kolirt/vue-modal'
+import App from './App.vue'
 
-const app = createApp({ ... })
+// (TypeScript only) Type-check every `group` reference against this list.
+declare module '@kolirt/vue-modal' {
+  interface ModalGroupRegistry extends DefineGroups<['default']> {}
+}
 
-app.use(createModal({
-  transitionTime: 200,
-  animationType: 'slideDown',
-  modalStyle: {
-    padding: '5rem 2rem',
-    align: 'center',
-    'z-index': 201
-  },
-  overlayStyle: {
-    'background-color': 'rgba(0, 0, 0, .5)',
-    'backdrop-filter': 'blur(5px)',
-    'z-index': 200
-  }
-}))
+const app = createApp(App)
+
+app.use(
+  createModal({
+    groups: {
+      // per-group behavior options — see /guide/behavior-options for the full list
+      default: {}
+    }
+  })
+)
 
 app.mount('#app')
 ```
 
-Add `ModalTarget` to `App.vue`
+**2. Mount a `<ModalTarget>` for each group** (`App.vue`):
 
 ```vue
 <script setup lang="ts">
-  import { ModalTarget } from '@kolirt/vue-modal'
+import { ModalTarget, ModalOverlay } from '@kolirt/vue-modal'
 </script>
 
 <template>
-  <ModalTarget />
+  <RouterView />
+
+  <ModalTarget group="default">
+    <ModalOverlay class="overlay" />
+  </ModalTarget>
 </template>
 ```
 
-# Usage
-
-## Basic usage
-
-First, you need to create modal. Instead of `SimpleModal`, you can implement your own wrapper with your own styles.
+**3. Write a modal:**
 
 ```vue
+<!-- ConfirmDialog.vue -->
 <script setup lang="ts">
-import { closeModal, confirmModal, SimpleModal } from '@kolirt/vue-modal'
+import { ModalRoot, ModalContent, ModalTitle, ModalDescription, useModalContext } from '@kolirt/vue-modal'
 
-const props = defineProps({
-  test: {}
-})
+defineOptions({ modalGroup: 'default' })
+
+const props = defineProps<{ message: string }>()
+
+const { close, confirm } = useModalContext<boolean>()
 </script>
 
 <template>
-  <SimpleModal title="Test modal" size="sm">
-    <pre>props: {{ props }}</pre>
+  <ModalRoot class="root">
+    <ModalContent class="card">
+      <ModalTitle>Confirm</ModalTitle>
+      <ModalDescription>{{ props.message }}</ModalDescription>
 
-    <template #footer>
-      <button @click="confirmModal({ value: 'some values' })" class="btn btn-primary">Confirm</button>
-      <button @click="closeModal()" class="btn btn-primary">Close</button>
-    </template>
-  </SimpleModal>
+      <div class="actions">
+        <button @click="close()" class="btn btn--cancel">Cancel</button>
+        <button @click="confirm(true)" class="btn btn--confirm">OK</button>
+      </div>
+    </ModalContent>
+  </ModalRoot>
 </template>
 ```
 
-Then you can use your modal.
+> Styles omitted for brevity. See the [first modal](https://kolirt.github.io/vue-modal/getting-started/first-modal) page for the full version with enter/exit animations.
 
-```vue
-<script setup lang="ts">
+**4. Open it from anywhere:**
+
+```ts
 import { openModal } from '@kolirt/vue-modal'
-import { defineAsyncComponent } from 'vue'
+import ConfirmDialog from './ConfirmDialog.vue'
 
-import TestModal from '@/components/modals/TestModal.vue'
+const ok = await openModal<boolean>(ConfirmDialog, {
+  props: { message: 'Delete this project?' }
+}).catch(() => false)
 
-function runModal() {
-  openModal(TestModal, {
-    test: 'some props'
-  })
-    // runs when modal is closed via confirmModal
-    .then((data) => {
-      console.log('success', data)
-    })
-    // runs when modal is closed via closeModal or esc
-    .catch(() => {
-      console.log('catch')
-    })
+if (ok) {
+  // user pressed OK
 }
-
-function runDynamicModal() {
-  openModal(
-    defineAsyncComponent(() => import('@/components/modals/TestModal.vue')),
-    {
-      test: 'some props'
-    }
-  )
-    // runs when modal is closed via confirmModal
-    .then((data) => {
-      console.log('success', data)
-    })
-    // runs when modal is closed via closeModal or esc
-    .catch(() => {
-      console.log('catch')
-    })
-}
-</script>
-
-<template>
-  <button @click="runModal">Open modal</button>
-</template>
 ```
 
-## Advanced usage
+## Documentation
 
-Open modal with clearing modal history.
+Everything lives at **[kolirt.github.io/vue-modal](https://kolirt.github.io/vue-modal/)**:
 
-```js
-openModal(
-  TestModal,
-  {
-    test: 'some props'
-  },
-  { force: true }
-)
-  // runs when modal is closed via confirmModal
-  .then((data) => {
-    console.log('success', data)
-  })
-  // runs when modal is closed via closeModal or esc
-  .catch(() => {
-    console.log('catch')
-  })
-```
+- [Getting started](https://kolirt.github.io/vue-modal/getting-started/introduction) — install, setup, your first modal
+- [Concepts](https://kolirt.github.io/vue-modal/concepts/architecture) — architecture, imperative flow, stacking, groups, headless primitives
+- [Guide](https://kolirt.github.io/vue-modal/guide/writing-a-modal) — writing modals, props & results, behavior options, styling, `useModal`, multiple targets, async components, TypeScript
+- [Recipes](https://kolirt.github.io/vue-modal/recipes/confirm-dialog) — confirm dialog, form with validation, lightbox, command palette, nested flows, global error modal
+- [API reference](https://kolirt.github.io/vue-modal/api/functions) — functions, components, composables, plugin, state, types
+- [Migration from v1](https://kolirt.github.io/vue-modal/resources/migration-from-v1) · [FAQ](https://kolirt.github.io/vue-modal/resources/faq) · [Troubleshooting](https://kolirt.github.io/vue-modal/resources/troubleshooting) · [Changelog](https://kolirt.github.io/vue-modal/resources/changelog)
 
-# Options
+## Support
 
-## Component `ModalTarget` props
+<a href="https://www.buymeacoffee.com/kolirt" target="_blank">
+  <img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" height="48" />
+</a>
 
-<table>
-<thead>
-  <tr>
-    <th>Prop name</th>
-    <th>Type</th>
-    <th>Default value</th>
-    <th>Description</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>group</td>
-    <td>string</td>
-    <td>'default'</td>
-    <td>Name of the modals holder</td>
-  </tr>
-  <tr>
-    <td>withoutOverlay</td>
-    <td>boolean</td>
-    <td>false</td>
-    <td>Disable overlay</td>
-  </tr>
-</tbody>
-</table>
+## License
 
-## Function `openModal` args
+[MIT](https://github.com/kolirt/vue-modal/blob/master/LICENSE)
 
-<table>
-<thead>
-  <tr>
-    <th>Arg number</th>
-    <th>Type</th>
-    <th>Description</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>1</td>
-    <td>Component</td>
-    <td>vue component</td>
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>object</td>
-    <td>props for component</td>
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>
-      <a href='https://github.com/kolirt/vue-modal/blob/master/lib/types.ts#L28'>
-        OpenModalOptions
-      </a>
-    </td>
-    <td>options</td>
-  </tr>
-</tbody>
-</table>
-
-# Demo
-
-[Demo here](https://kolirt.github.io/vue-modal/)
-
-# Example
-
-[Example here](https://github.com/kolirt/vue-modal/tree/master/examples)
-
-# FAQ
-
-Check closed [issues](https://github.com/kolirt/vue-modal/issues) with `FAQ` label to get answers for most asked
-questions.
-
-# License
-
-[MIT](./LICENSE)
-
-# Other packages
+## Other packages
 
 Check out my other projects on my [GitHub profile](https://github.com/kolirt).

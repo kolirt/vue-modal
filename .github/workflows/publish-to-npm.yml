@@ -2,10 +2,11 @@ name: 🚀 publish to npm
 
 on:
   release:
-    types: [ published ]
+    types: [published]
 
 permissions:
   id-token: write
+  contents: read
 
 jobs:
   release:
@@ -14,20 +15,36 @@ jobs:
     steps:
       - name: 📚 Checkout
         uses: actions/checkout@v4
+
+      - name: 📦 Pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
       - name: 🟢 Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: 'https://registry.npmjs.org'
-      - name: 🕵 Yarn install
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: install
+          cache: pnpm
+
+      - name: 🕵 Install
+        run: pnpm install --frozen-lockfile
+
+      - name: 🧹 Lint
+        run: pnpm --filter @kolirt/vue-modal run lint
+
+      - name: 🔎 Type-check
+        run: pnpm --filter @kolirt/vue-modal run type-check
+
       - name: 🏗 Build
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: build-lib
+        run: pnpm --filter @kolirt/vue-modal run build
+
+      - name: 📄 Copy README & LICENSE into package
+        run: cp README.md LICENSE packages/core/
+
       - name: 🚀 Publish
-        run: npm publish --provenance --access public
+        run: pnpm --filter @kolirt/vue-modal publish --no-git-checks --provenance --access public
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          NPM_CONFIG_PROVENANCE: 'true'

@@ -1,0 +1,7 @@
+@import 'tailwindcss';
+@import '@nuxt/ui';
+
+@source "../../content/**/*.md";
+@source "../../components/**/*.{vue,ts}";
+
+@source inline("py-10 py-14 py-20 sm:py-14 lg:py-20 gap-6 gap-8 gap-10 sm:gap-10 sm:gap-y-10 lg:gap-y-12 mt-6");

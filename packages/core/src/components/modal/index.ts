@@ -1,0 +1,5 @@
+export { default as ModalContent } from './ModalContent.vue'
+export { default as ModalDescription } from './ModalDescription.vue'
+export { default as ModalRoot } from './ModalRoot.vue'
+export { default as ModalTitle } from './ModalTitle.vue'
+export type { ModalRootProps } from './interface'

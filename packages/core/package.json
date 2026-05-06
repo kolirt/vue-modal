@@ -1,0 +1,59 @@
+{
+  "name": "@kolirt/vue-modal",
+  "version": "2.0.0",
+  "type": "module",
+  "description": "Open modals from any function, stack them as needed, and style them however you want. No template boilerplate, no manual state — just call and await.",
+  "author": "kolirt",
+  "license": "MIT",
+  "keywords": [
+    "vue",
+    "vue3",
+    "vuejs",
+    "modal",
+    "modals",
+    "vue-modal",
+    "vue-modals",
+    "dialog",
+    "popup",
+    "overlay",
+    "confirm",
+    "lightbox",
+    "modal-manager",
+    "imperative",
+    "stacking",
+    "nested-modals",
+    "headless",
+    "focus-trap"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kolirt/vue-modal"
+  },
+  "homepage": "https://github.com/kolirt/vue-modal#readme",
+  "bugs": {
+    "url": "https://github.com/kolirt/vue-modal/issues"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "vite build",
+    "type-check": "vue-tsc --noEmit -p tsconfig.json",
+    "lint": "eslint . --ext .vue,.js,.ts --fix"
+  },
+  "peerDependencies": {
+    "reka-ui": ">=2",
+    "vue": ">=3.4"
+  }
+}
