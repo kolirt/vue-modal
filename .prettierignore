@@ -1,1 +1,6 @@
 examples
+docs/content
+docs/.nuxt
+docs/.data
+docs/*.md
+/private/var/www/kolirt/packages/vue-modal/docs/content/index.md
