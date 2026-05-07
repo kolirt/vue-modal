@@ -1,7 +1,7 @@
 import { onScopeDispose, toValue, watch, type MaybeRefOrGetter } from 'vue'
 
 export function createBodyStyleLock(
-  prop: 'overflow' | 'paddingRight' | 'userSelect',
+  prop: 'overflow' | 'paddingRight',
   lockedValue: string | (() => string)
 ) {
   let activeLocks = 0
@@ -50,7 +50,6 @@ export function createBodyStyleLock(
 }
 
 export const useBodyOverflowLock = createBodyStyleLock('overflow', 'hidden')
-export const useBodyUserSelectLock = createBodyStyleLock('userSelect', 'none')
 export const useBodyPaddingRightLock = createBodyStyleLock('paddingRight', () => {
   const width = window.innerWidth - document.documentElement.clientWidth
   return width > 0 ? `${width}px` : ''

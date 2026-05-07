@@ -2,7 +2,6 @@
 import { computed, provide, ref } from 'vue'
 
 import { requestClose } from '../../actions'
-import { useBodyUserSelectLock } from '../../composables/useBodyStyleLock'
 import { usePressOutside } from '../../composables/usePressOutside'
 import { useScrollLock } from '../../composables/useScrollLock'
 import { useStackTransition } from '../../composables/useStackTransition'
@@ -13,7 +12,13 @@ import type { ModalBehaviorOptions } from '../../types'
 import ModalSlot from './ModalSlot.vue'
 import type { ModalTargetProps } from './interface'
 
-const props = defineProps<ModalTargetProps>()
+const props = withDefaults(defineProps<ModalTargetProps>(), {
+  enableInteractOutside: undefined,
+  disableCloseOnInteractOutside: undefined,
+  disableCloseOnInteractOverlay: undefined,
+  disableLockBodyScroll: undefined,
+  disableCloseOnEscape: undefined
+})
 
 const regionRef = ref<HTMLElement | null>(null)
 
@@ -54,7 +59,6 @@ function closeTopmost() {
 }
 
 useScrollLock(() => hasActive.value && effectiveOptions.value.lockBodyScroll)
-useBodyUserSelectLock(() => hasActive.value && !effectiveOptions.value.interactOutside)
 
 usePressOutside({
   element: regionRef,
@@ -94,10 +98,5 @@ provide(modalGroupConfigKey, {
   width: 100dvw;
   height: 100dvh;
   pointer-events: none;
-}
-
-/* Reset selection inheritance when body.user-select is locked (modal mode). */
-:where([data-modal-region]) {
-  user-select: auto;
 }
 </style>
