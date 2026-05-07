@@ -13,13 +13,7 @@ import type { ModalBehaviorOptions } from '../../types'
 import ModalSlot from './ModalSlot.vue'
 import type { ModalTargetProps } from './interface'
 
-const props = withDefaults(defineProps<ModalTargetProps>(), {
-  enableInteractOutside: false,
-  disableCloseOnInteractOutside: false,
-  disableCloseOnInteractOverlay: false,
-  disableLockBodyScroll: false,
-  disableCloseOnEscape: false
-})
+const props = defineProps<ModalTargetProps>()
 
 const regionRef = ref<HTMLElement | null>(null)
 
