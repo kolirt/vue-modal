@@ -1,3 +1,5 @@
+const baseURL = (process.env.NUXT_APP_BASE_URL || '/').replace(/\/$/, '')
+
 export default defineAppConfig({
   ui: {
     colors: {
@@ -12,8 +14,8 @@ export default defineAppConfig({
   header: {
     title: '@kolirt/vue-modal',
     logo: {
-      light: '/logo.png',
-      dark: '/logo.png',
+      light: `${baseURL}/logo.png`,
+      dark: `${baseURL}/logo.png`,
       alt: '@kolirt/vue-modal'
     }
   },

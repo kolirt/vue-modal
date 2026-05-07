@@ -7,7 +7,13 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      link: [{ rel: 'icon', type: 'image/png', href: '/logo.png' }]
+      link: [
+        {
+          rel: 'icon',
+          type: 'image/png',
+          href: `${(process.env.NUXT_APP_BASE_URL || '/').replace(/\/$/, '')}/logo.png`
+        }
+      ]
     }
   },
   mdc: {
