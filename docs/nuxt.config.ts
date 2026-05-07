@@ -21,5 +21,8 @@ export default defineNuxtConfig({
       shikiEngine: 'javascript'
     }
   },
+  image: {
+    provider: 'none'
+  },
   compatibilityDate: '2025-07-22'
 })
