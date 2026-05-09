@@ -1,6 +1,7 @@
 import { computed, getCurrentScope, onScopeDispose, ref, type Component } from 'vue'
 
 import { openModal } from '../actions'
+import { isTopmost } from '../state'
 import type { CloseFlags, ModalHandle, OpenModalOptions } from '../types'
 
 export interface UseModalDefaults<C extends Component> extends OpenModalOptions<C> {
@@ -20,6 +21,7 @@ export function useModal<T = unknown, C extends Component = Component>(component
   let currentHandle: ModalHandle<T> | null = null
   const instanceId = ref<number | null>(null)
   const isOpen = computed(() => instanceId.value !== null)
+  const isTop = computed(() => instanceId.value !== null && isTopmost(instanceId.value))
 
   function on(event: string, handler: (...args: any[]) => void) {
     ;(persistent[event] ||= new Set()).add(handler)
@@ -92,6 +94,7 @@ export function useModal<T = unknown, C extends Component = Component>(component
     on,
     off,
     isOpen,
+    isTop,
     instanceId
   }
 }
