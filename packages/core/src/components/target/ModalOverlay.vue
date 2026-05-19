@@ -19,7 +19,9 @@ if (!groupConfig) {
       :data-instant="groupConfig.topInstantEnter.value ? '' : null"
       data-modal-overlay
       v-bind="$attrs"
-    />
+    >
+      <slot />
+    </div>
   </Presence>
 </template>
 
