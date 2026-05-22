@@ -51,6 +51,17 @@ function onEscape(e: Event) {
 }
 
 function onInteractOverlay(e: Event) {
+  // Reka fires `pointer-down-outside` for any click outside ModalContent —
+  // including clicks outside the entire region. Those belong to the
+  // `closeOnInteractOutside` gesture (handled by usePressOutside in ModalTarget),
+  // not to this overlay gesture. Filter them out so the two flags stay independent.
+  const region = groupConfig.region.value
+  const detail = (e as CustomEvent<{ originalEvent?: Event }>).detail
+  const target = (detail?.originalEvent?.target ?? (e as Event).target) as Node | null
+  if (region && target instanceof Node && !region.contains(target)) {
+    e.preventDefault()
+    return
+  }
   if (!isTopmost(item.id) || !groupConfig.closeOnInteractOverlay.value) {
     e.preventDefault()
     return

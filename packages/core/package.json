@@ -1,6 +1,6 @@
 {
   "name": "@kolirt/vue-modal",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "type": "module",
   "description": "Open modals from any function, stack them as needed, and style them however you want. No template boilerplate, no manual state — just call and await.",
   "author": "kolirt",
