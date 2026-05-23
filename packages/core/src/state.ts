@@ -1,5 +1,6 @@
 import { computed, markRaw, reactive } from 'vue'
 
+import { emitModalOpen } from './events'
 import type { BeforeCloseHandler, CloseModalOptions, ModalGroup, ModalItem } from './types'
 
 export interface InternalModalItem<T = unknown> extends ModalItem {
@@ -35,6 +36,7 @@ export function isGroupOpen(group: ModalGroup) {
 export function addModal(item: InternalModalItem) {
   item.component = markRaw(item.component)
   state.modals.push(item)
+  emitModalOpen(item)
 }
 
 export function removeModalById(id: number) {

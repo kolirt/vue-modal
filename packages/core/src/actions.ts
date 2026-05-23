@@ -1,5 +1,6 @@
 import type { Component } from 'vue'
 
+import { emitModalClose } from './events'
 import { addModal, findModalById, removeModalById, state, type InternalModalItem } from './state'
 import type { CloseFlags, CloseModalOptions, ModalGroup, ModalHandle, OpenModalOptions } from './types'
 import { nextModalId } from './utils/idCounter'
@@ -35,6 +36,7 @@ export function finalizeModal(id: number) {
   const close = item.pendingClose || { success: false }
   item.resolved = true
   removeModalById(id)
+  emitModalClose(item)
   if (close.success) item.resolve(close.data)
   else item.reject(new ModalClosedError())
 }
