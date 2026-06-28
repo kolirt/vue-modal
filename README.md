@@ -35,6 +35,12 @@
 - **Modal groups** — isolate flows with named groups — the main app stack, confirm dialogs, side panels — each rendering in its own mount point with its own queue.
 - **Async components** — open any Vue component, including async ones loaded on demand. Heavy modals stay out of your initial bundle and resolve through the same promise.
 
+## 🤖 For AI agents
+
+Using an AI coding agent? See [`AGENTS.md`](./AGENTS.md) for a complete,
+de-styled reference plus a critical-rules checklist. The two most common agent
+mistakes are a missing `<ModalContent>` and z-index/stacking — both covered there.
+
 ## Install
 
 ```bash

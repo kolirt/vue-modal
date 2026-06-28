@@ -44,11 +44,7 @@ function subscribe<H>(
   }
 }
 
-function emit(
-  channel: EventChannel<(modal: ModalItem) => void>,
-  modal: ModalItem,
-  label: string
-) {
+function emit(channel: EventChannel<(modal: ModalItem) => void>, modal: ModalItem, label: string) {
   for (const fn of channel.global.slice()) {
     try {
       fn(modal)
@@ -70,6 +66,10 @@ function emit(
 const openChannel = createChannel<ModalOpenHandler>()
 const closeChannel = createChannel<ModalCloseHandler>()
 
+/**
+ * Subscribe to modal-open events, globally or for one `group`.
+ * Returns an unsubscribe function. Handler errors are caught and logged.
+ */
 export function onModalOpen(handler: ModalOpenHandler): () => void
 export function onModalOpen(group: ModalGroup, handler: ModalOpenHandler): () => void
 export function onModalOpen(
@@ -79,6 +79,10 @@ export function onModalOpen(
   return subscribe(openChannel, groupOrHandler, maybeHandler)
 }
 
+/**
+ * Subscribe to modal-close events, globally or for one `group`.
+ * Returns an unsubscribe function. Handler errors are caught and logged.
+ */
 export function onModalClose(handler: ModalCloseHandler): () => void
 export function onModalClose(group: ModalGroup, handler: ModalCloseHandler): () => void
 export function onModalClose(

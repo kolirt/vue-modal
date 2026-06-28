@@ -22,13 +22,17 @@ export const state: ModalState = reactive<ModalState>({
   modals: []
 })
 
+/** Reactive list of all open modals (read-only snapshot of the stack). */
 export const modals = computed(() => state.modals as ModalItem[])
+/** Reactive boolean: is any modal currently open. */
 export const isOpened = computed(() => state.modals.length > 0)
 
+/** Reactive list of open modals in `group` (top of stack is last). */
 export function groupModals(group: ModalGroup) {
   return computed(() => state.modals.filter((m) => m.group === group) as ModalItem[])
 }
 
+/** Reactive boolean: is any modal open in `group`. */
 export function isGroupOpen(group: ModalGroup) {
   return computed(() => state.modals.some((m) => m.group === group))
 }

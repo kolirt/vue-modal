@@ -6,3 +6,4 @@ node_modules/
 # Copied from repo root by CI before publish — never commit
 README.md
 LICENSE
+AGENTS.md

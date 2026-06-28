@@ -4,10 +4,16 @@ import { openModal } from '../actions'
 import { isTopmost } from '../state'
 import type { CloseFlags, ModalHandle, OpenModalOptions } from '../types'
 
+/** Defaults for {@link useModal}; extends {@link OpenModalOptions} with `closeOnUnmount`. */
 export interface UseModalDefaults<C extends Component> extends OpenModalOptions<C> {
   closeOnUnmount?: boolean
 }
 
+/**
+ * Component-scoped wrapper around {@link openModal}. Binds default props/`on`
+ * handlers and exposes reactive `isOpen` / `isTop`. By default the modal is
+ * closed automatically when the owning scope unmounts (`closeOnUnmount`).
+ */
 export function useModal<T = unknown, C extends Component = Component>(component: C, defaults?: UseModalDefaults<C>) {
   const closeOnUnmount = defaults?.closeOnUnmount ?? true
 

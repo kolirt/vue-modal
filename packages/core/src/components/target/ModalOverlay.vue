@@ -13,6 +13,7 @@ if (!groupConfig) {
 </script>
 
 <template>
+  <!-- Backdrop for a group; renders [data-modal-overlay][data-state]. -->
   <Presence :present="groupConfig.hasActive.value">
     <div
       :data-state="groupConfig.hasActive.value ? 'open' : 'closed'"

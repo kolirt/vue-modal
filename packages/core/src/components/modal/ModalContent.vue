@@ -13,6 +13,7 @@ if (!rootContext) {
 </script>
 
 <template>
+  <!-- Visible modal card + enter/exit transitions. Required inside <ModalRoot>; omitting it leaves the modal blank/stuck. -->
   <Presence @after-leave="rootContext.onAfterLeave" :present="rootContext.present.value">
     <DialogContent
       @escape-key-down="rootContext.onEscape"

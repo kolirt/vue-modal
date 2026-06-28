@@ -40,8 +40,8 @@ jobs:
       - name: 🏗 Build
         run: pnpm --filter @kolirt/vue-modal run build
 
-      - name: 📄 Copy README & LICENSE into package
-        run: cp README.md LICENSE packages/core/
+      - name: 📄 Copy README, LICENSE & AGENTS into package
+        run: cp README.md LICENSE AGENTS.md packages/core/
 
       - name: 🚀 Publish
         run: pnpm --filter @kolirt/vue-modal publish --no-git-checks --provenance --access public

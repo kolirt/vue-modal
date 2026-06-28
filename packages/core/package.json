@@ -1,6 +1,6 @@
 {
   "name": "@kolirt/vue-modal",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "type": "module",
   "description": "Open modals from any function, stack them as needed, and style them however you want. No template boilerplate, no manual state — just call and await.",
   "author": "kolirt",
@@ -34,7 +34,8 @@
     "url": "https://github.com/kolirt/vue-modal/issues"
   },
   "files": [
-    "dist"
+    "dist",
+    "AGENTS.md"
   ],
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -48,7 +49,7 @@
     "./package.json": "./package.json"
   },
   "scripts": {
-    "build": "vite build",
+    "build": "vite build && node scripts/prepare-llm-docs.mjs",
     "type-check": "vue-tsc --noEmit -p tsconfig.json",
     "lint": "eslint . --ext .vue,.js,.ts --fix"
   },

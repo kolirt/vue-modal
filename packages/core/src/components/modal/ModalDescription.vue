@@ -5,6 +5,7 @@ defineProps<DialogDescriptionProps>()
 </script>
 
 <template>
+  <!-- Accessible dialog description; renders [data-modal-description]. -->
   <DialogDescription data-modal-description v-bind="$props">
     <slot />
   </DialogDescription>

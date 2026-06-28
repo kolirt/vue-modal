@@ -5,6 +5,12 @@ import { getGroupConfig, resolveBehaviorOptions } from '../options'
 import { isTopmostInGroup, isTopmost as isTopmostInState } from '../state'
 import type { BeforeCloseHandler, CloseFlags, ModalEffectiveOptions } from '../types'
 
+/**
+ * Access the current modal's context from **inside** a component opened via
+ * {@link openModal} / {@link useModal}. Provides `confirm(data)`, `close()`,
+ * `onBeforeClose(guard)`, and reactive `isClosing` / `isTopmost`. Throws if
+ * called outside an opened modal.
+ */
 export function useModalContext<T = unknown>() {
   const injected = inject(modalContextKey, null) as ModalContext<T> | null
   if (!injected) {

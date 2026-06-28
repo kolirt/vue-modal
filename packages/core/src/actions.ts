@@ -5,6 +5,7 @@ import { addModal, findModalById, removeModalById, state, type InternalModalItem
 import type { CloseFlags, CloseModalOptions, ModalGroup, ModalHandle, OpenModalOptions } from './types'
 import { nextModalId } from './utils/idCounter'
 
+/** Rejection reason when a modal is dismissed without `confirm(...)`. */
 export class ModalClosedError extends Error {
   constructor() {
     super('Modal closed.')
@@ -41,6 +42,21 @@ export function finalizeModal(id: number) {
   else item.reject(new ModalClosedError())
 }
 
+/**
+ * Open a modal imperatively and get a typed promise for its result.
+ *
+ * Returns a {@link ModalHandle} that is awaitable: it resolves with the value
+ * passed to `confirm(...)` and rejects with {@link ModalClosedError} when the
+ * modal is dismissed.
+ *
+ * Requirements:
+ * - A `group` is required — pass `options.group` or declare
+ *   `defineOptions({ modalGroup: '...' })` on the component. Missing group throws.
+ * - A `<ModalTarget group="...">` for that group must be mounted in the app.
+ * - Client-only: never call at module scope; call from an event handler or
+ *   inside `onMounted`. It mutates shared module-level state, so calling it
+ *   during SSR is unsafe — that state leaks across concurrent requests.
+ */
 export function openModal<T = unknown, C extends Component = Component>(
   component: C,
   options?: OpenModalOptions<C>
@@ -118,6 +134,7 @@ export function openModal<T = unknown, C extends Component = Component>(
   return handle
 }
 
+/** Close the topmost modal (optionally scoped to `opts.group`). No-op if none open. */
 export async function closeModal<T = unknown>(opts?: CloseModalOptions<T> & { group?: ModalGroup }) {
   const pool = opts?.group ? state.modals.filter((m) => m.group === opts.group) : state.modals
   const top = pool[pool.length - 1]
@@ -125,12 +142,14 @@ export async function closeModal<T = unknown>(opts?: CloseModalOptions<T> & { gr
   await requestClose(top as InternalModalItem<T>, opts || {})
 }
 
+/** Close a modal by its numeric id. No-op if not found. */
 export async function closeModalById<T = unknown>(id: number, opts?: CloseModalOptions<T>) {
   const item = findModalById(id) as InternalModalItem<T> | undefined
   if (!item) return
   await requestClose(item, opts || {})
 }
 
+/** Result of a bulk close: how many modals actually closed vs. were not closed (guard veto, or already closing/resolved). */
 export interface CloseManyResult {
   closed: number
   vetoed: number
@@ -150,10 +169,12 @@ async function closeMany(items: InternalModalItem[], opts?: CloseFlags): Promise
   return { closed, vetoed }
 }
 
+/** Close every open modal (all groups). Returns counts of closed/vetoed. */
 export function closeAllModals(opts?: CloseFlags) {
   return closeMany(state.modals.slice(), opts)
 }
 
+/** Close every open modal in `group`. Returns counts of closed/vetoed. */
 export function closeModalsByGroup(group: ModalGroup, opts?: CloseFlags) {
   return closeMany(
     state.modals.filter((m) => m.group === group),
@@ -161,6 +182,10 @@ export function closeModalsByGroup(group: ModalGroup, opts?: CloseFlags) {
   )
 }
 
+/**
+ * Close the topmost modal of the target group (instantly, ignoring guards) and
+ * open `component` in its place. Same `group` requirement as {@link openModal}.
+ */
 export function replaceModal<T = unknown, C extends Component = Component>(
   component: C,
   options?: OpenModalOptions<C>
