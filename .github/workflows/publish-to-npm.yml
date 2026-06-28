@@ -44,7 +44,7 @@ jobs:
         run: cp README.md LICENSE AGENTS.md packages/core/
 
       - name: 🚀 Publish
-        run: pnpm --filter @kolirt/vue-modal publish --no-git-checks --provenance --access public
+        run: npm publish --provenance --access public
+        working-directory: packages/core
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-          NPM_CONFIG_PROVENANCE: 'true'
